@@ -23,7 +23,7 @@
         }
 
         return array;
-    }
+    };
 
     var newList = shuffle(allCards);
     console.log(newList);
@@ -40,39 +40,101 @@
             var cardLi = document.createElement("li");
                 cardLi.classList.add("card");
             var symbolCard = document.createElement("i");
-                symbolCard.classList.add("fa", list[i])
+                symbolCard.classList.add("fa", list[i]);
                 cardLi.appendChild(symbolCard);
 
             fragment.appendChild(cardLi);
         }
         return fragment;
-    }
+    };
 
     var newDeck = createDeck(newList);
-        deck.appendChild(newDeck);
+
+    deck.appendChild(newDeck);
 
     console.log(deck);
 
+// Insert open class cards to array
+
+    var symbolList = [];
+    var symbolContainer = document.querySelectorAll(".card");
+    
+    function getSymbols(){
+
+        for (var i = 0; i < 16; i++) {
+            var symbol = symbolContainer[i];
+            if (symbol.classList.item(1) == "open"){
+                var openCard = symbol.firstChild.classList.item(1);
+            }
+        }
+        symbolList.push(openCard);
+        checkTheCards();
+
+        console.log(openCard);
+        console.log(symbolList);
+    };
+
+// Check function when 2 cards inside
+
+    function checkTheCards() {
+
+        if (symbolList.length < 2){
+
+            console.log("Less then 2");
+
+        } else if (symbolList.length === 2 && (symbolList[0] === symbolList[1])){
+            
+            console.log("2 cards and win");
+
+        } else if (symbolList.length === 2 && (symbolList[0] != symbolList[1])){
+            
+            console.log("2 cards and try again");
+
+        } else if (symbolList.length > 2) {
+
+            console.log("stop");
+
+        }
+    };
+    
 
 // Add class Open, Show to cliked Card;
 
     var symbolContainer = document.querySelectorAll(".card");
     var card = document.querySelector(".card");   
 
-    function getSymbols(){
+    function checkCards(){
+        getSymbols()
+    };
+
+    function clickCard(){
 
         for (var i = 0; i < 16; i++) { 
             var oneCard = symbolContainer[i];
-
-            oneCard.addEventListener("click", function() {
-
+            
+            oneCard.addEventListener("click", function(){
                 this.classList.add("open", "show");
-                return this;
+            //    console.log(this);        
+                checkCards()
+            }, false);
+        }
+    };
 
-            });
-        }         
-    }
-    var openCard = getSymbols();
+    clickCard();
+
+
+
+
+
+
+// Add card to open List
+
+// console.log(openCard());
+
+
+   
+
+    
 
     
 
