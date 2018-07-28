@@ -67,61 +67,84 @@
 
 // ---------------------- Cards checker --------------------------
 
-
-// Insert open class cards to array
-
         var symbolList = [];
+        var listOpen = [];
         var symbolContainer = document.querySelectorAll(".card");
-        
+
+// If card match
+
+        function cardMatch(cardA, cardB) {
+            cardB.classList.remove("open");  
+            cardA.classList.remove("open");
+            console.log("good");
+
+            cardA.classList.add("match");
+            cardB.classList.add("match");
+            listOpen = [];
+        }
+
+// If cards don't match
+
+        function cardNoMatch(cardA, cardB) {
+            cardB.classList.remove("open");
+            cardA.classList.remove("open");
+           // cardB.classList.remove("show");    
+           // cardA.classList.remove("show");
+            console.log("bad");
+            listOpen = [];      
+        }
+
+// Two cards open
+
+        function getOpenCard(){
+            var cardOpenSymbol = document.querySelectorAll(".open .fa");
+            var cardOpen = document.querySelectorAll(".open");
+            var cardA = cardOpen[0];
+            var cardB = cardOpen[1];
+            var card1 = cardOpenSymbol[0].classList.item(1);
+            var card2 = cardOpenSymbol[1].classList.item(1);
+
+            listOpen.push(card1);
+            listOpen.push(card2);
+            console.log(listOpen);
+
+            if (listOpen.length = 2) {
+                if (card1 === card2) {
+                    cardMatch(cardA, cardB); 
+
+                } else if (card1 != card2) {
+                    cardNoMatch(cardA, cardB); 
+
+                }  else {console.log(undefined)}  
+
+            } else if (listOpen > 2) {
+                //  cardB.classList.remove("show");    
+                //  cardA.classList.remove("show");
+            }   
+        }
+
+
         function getSymbols(){
 
             for (var i = 0; i < 16; i++) {
+        
                 var symbol = symbolContainer[i];
                 if (symbol.classList.item(1) == "open"){
                     var openCard = symbol.firstChild.classList.item(1);
-                }
+                } 
             }
             symbolList.push(openCard);
+
             countMoves(symbolList);
-            checkTheCards();
-
-      //      console.log(openCard);
-     //     console.log(symbolList);
+            getOpenCard();
         };
-
-// Check if there are 2 cards
-
-        function checkTheCards() {
-
-    //       console.log(symbolList.length);
-
-            if (symbolList.length < 2){
-
-        //        console.log("Less then 2");
-
-            } else if (symbolList.length === 2 && (symbolList[0] === symbolList[1])){
-                
-         //       console.log("2 cards and win");
-
-            } else if (symbolList.length === 2 && (symbolList[0] != symbolList[1])){
-                
-         //       console.log("2 cards and try again");
-
-            } else if (symbolList.length > 2) {
-
-          //      console.log("stop");
-
-            }
-        };
-
- 
 
 // Add class Open, Show to cliked Card;
 
         var symbolContainer = document.querySelectorAll(".card");
-        var card = document.querySelector(".card");   
 
         function checkCards(){
+          
             getSymbols();
         };
 
@@ -139,7 +162,6 @@
         };
 
         clickCard();
-    
     };
 
     function restartFunction() {
