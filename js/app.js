@@ -1,6 +1,23 @@
 /*
  * Create a list that holds all of your cards
+ * 
  */
+var allCards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle", "fa-diamond", "fa-bomb", "fa-leaf", "fa-bomb", "fa-bolt", "fa-bicycle", "fa-paper-plane-o", "fa-cube"];
+
+
+var symbolList = [];
+var symbolContainer = document.querySelectorAll(".card .fa");
+
+function getSymbols(){
+    for (var i = 0; i < 16; i++) {   
+        var symbol = symbolContainer[i].classList.item(1);
+        symbolList.push(symbol);
+    } 
+    return symbolList;
+};
+getSymbols();
+console.log(symbolList);  
+console.log(allCards);  
 
 
 /*
