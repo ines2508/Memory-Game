@@ -3,8 +3,8 @@
 
     var panel = document.querySelector(".score-panel");
     var resetButton = document.querySelector(".restart");
-    console.log(panel);
-    console.log(resetButton);
+//    console.log(panel);
+//    console.log(resetButton);
 
 
 // ---------------------- Cards shuffler -----------------------------
@@ -53,6 +53,16 @@
         deck.appendChild(newDeck);
         createDeck(newList);
    
+// ---------------------- Panel ---------------------------------
+
+    function countMoves(list) {
+
+        var movesNumber = document.querySelector(".moves");
+        var count = (list.length % 2 === 0) ? (list.length / 2) : ((list.length / 2) - 0.5)
+
+        movesNumber.innerHTML = count;    
+    }
+
 
 
 // ---------------------- Cards checker --------------------------
@@ -72,31 +82,34 @@
                 }
             }
             symbolList.push(openCard);
+            countMoves(symbolList);
             checkTheCards();
 
-            console.log(openCard);
-            console.log(symbolList);
+      //      console.log(openCard);
+     //     console.log(symbolList);
         };
 
 // Check if there are 2 cards
 
         function checkTheCards() {
 
+    //       console.log(symbolList.length);
+
             if (symbolList.length < 2){
 
-                console.log("Less then 2");
+        //        console.log("Less then 2");
 
             } else if (symbolList.length === 2 && (symbolList[0] === symbolList[1])){
                 
-                console.log("2 cards and win");
+         //       console.log("2 cards and win");
 
             } else if (symbolList.length === 2 && (symbolList[0] != symbolList[1])){
                 
-                console.log("2 cards and try again");
+         //       console.log("2 cards and try again");
 
             } else if (symbolList.length > 2) {
 
-                console.log("stop");
+          //      console.log("stop");
 
             }
         };
