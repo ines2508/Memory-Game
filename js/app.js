@@ -1,135 +1,146 @@
-/*
- * Create a list that holds all of your cards
- * 
- */
+
     var allCards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle", "fa-diamond", "fa-bomb", "fa-leaf", "fa-bomb", "fa-bolt", "fa-bicycle", "fa-paper-plane-o", "fa-cube"];
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+
+    var panel = document.querySelector(".score-panel");
+    var resetButton = document.querySelector(".restart");
+    console.log(panel);
+    console.log(resetButton);
+
+
+// ---------------------- Cards shuffler -----------------------------
+
+    function start() {
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-    function shuffle(array) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
 
-        while (currentIndex !== 0) {
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
-        }
+            while (currentIndex !== 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
 
-        return array;
-    };
-
-    var newList = shuffle(allCards);
-    console.log(newList);
+            return array;
+        };
+        shuffle(allCards);
+        var newList = shuffle(allCards);
 
 // Creat new Deck of Cards    
 
-    var deck = document.querySelector(".deck");
-    var fragment = document.createDocumentFragment();
+        var deck = document.querySelector(".deck");
+        var fragment = document.createDocumentFragment();
 
-    function createDeck(list) {
+        function createDeck(list) {
 
-        for (var i = 0; i < 16; i++) {
-            
-            var cardLi = document.createElement("li");
-                cardLi.classList.add("card");
-            var symbolCard = document.createElement("i");
-                symbolCard.classList.add("fa", list[i]);
-                cardLi.appendChild(symbolCard);
+            for (var i = 0; i < 16; i++) {
+                
+                var cardLi = document.createElement("li");
+                    cardLi.classList.add("card");
+                var symbolCard = document.createElement("i");
+                    symbolCard.classList.add("fa", list[i]);
+                    cardLi.appendChild(symbolCard);
 
-            fragment.appendChild(cardLi);
-        }
-        return fragment;
-    };
+                fragment.appendChild(cardLi);
+            }
+            return fragment;
+        };
 
-    var newDeck = createDeck(newList);
+        var newDeck = createDeck(newList);
 
-    deck.appendChild(newDeck);
+        deck.appendChild(newDeck);
+        createDeck(newList);
+   
 
-    console.log(deck);
+
+// ---------------------- Cards checker --------------------------
+
 
 // Insert open class cards to array
 
-    var symbolList = [];
-    var symbolContainer = document.querySelectorAll(".card");
-    
-    function getSymbols(){
+        var symbolList = [];
+        var symbolContainer = document.querySelectorAll(".card");
+        
+        function getSymbols(){
 
-        for (var i = 0; i < 16; i++) {
-            var symbol = symbolContainer[i];
-            if (symbol.classList.item(1) == "open"){
-                var openCard = symbol.firstChild.classList.item(1);
+            for (var i = 0; i < 16; i++) {
+                var symbol = symbolContainer[i];
+                if (symbol.classList.item(1) == "open"){
+                    var openCard = symbol.firstChild.classList.item(1);
+                }
             }
-        }
-        symbolList.push(openCard);
-        checkTheCards();
+            symbolList.push(openCard);
+            checkTheCards();
 
-        console.log(openCard);
-        console.log(symbolList);
-    };
+            console.log(openCard);
+            console.log(symbolList);
+        };
 
-// Check function when 2 cards inside
+// Check if there are 2 cards
 
-    function checkTheCards() {
+        function checkTheCards() {
 
-        if (symbolList.length < 2){
+            if (symbolList.length < 2){
 
-            console.log("Less then 2");
+                console.log("Less then 2");
 
-        } else if (symbolList.length === 2 && (symbolList[0] === symbolList[1])){
-            
-            console.log("2 cards and win");
+            } else if (symbolList.length === 2 && (symbolList[0] === symbolList[1])){
+                
+                console.log("2 cards and win");
 
-        } else if (symbolList.length === 2 && (symbolList[0] != symbolList[1])){
-            
-            console.log("2 cards and try again");
+            } else if (symbolList.length === 2 && (symbolList[0] != symbolList[1])){
+                
+                console.log("2 cards and try again");
 
-        } else if (symbolList.length > 2) {
+            } else if (symbolList.length > 2) {
 
-            console.log("stop");
+                console.log("stop");
 
-        }
-    };
-    
+            }
+        };
+
+ 
 
 // Add class Open, Show to cliked Card;
 
-    var symbolContainer = document.querySelectorAll(".card");
-    var card = document.querySelector(".card");   
+        var symbolContainer = document.querySelectorAll(".card");
+        var card = document.querySelector(".card");   
 
-    function checkCards(){
-        getSymbols()
+        function checkCards(){
+            getSymbols();
+        };
+
+        function clickCard(){
+
+            for (var i = 0; i < 16; i++) { 
+                var oneCard = symbolContainer[i];
+                
+                oneCard.addEventListener("click", function(){
+                        this.classList.add("open", "show");
+
+                    checkCards();
+                }, false);
+            }
+        };
+
+        clickCard();
+    
     };
 
-    function clickCard(){
-
-        for (var i = 0; i < 16; i++) { 
-            var oneCard = symbolContainer[i];
-            
-            oneCard.addEventListener("click", function(){
-                this.classList.add("open", "show");
-            //    console.log(this);        
-                checkCards()
-            }, false);
-        }
+    function restartFunction() {
+        var deckRemove = document.querySelector(".deck");
+        deckRemove.innerHTML = "";
+        start();
     };
 
-    clickCard();
+    resetButton.addEventListener("click", restartFunction, false);
+    
 
 
 
 
-
-
-// Add card to open List
-
-// console.log(openCard());
 
 
    
