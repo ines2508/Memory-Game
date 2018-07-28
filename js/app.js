@@ -73,6 +73,7 @@
         }         
     }
     var openCard = getSymbols();
+
     
 
 
