@@ -8,12 +8,31 @@ html {
     box-sizing: inherit;
 }
 
-html,
-body {
-    width: 100%;
-    height: 100%;
+*, 
+body, 
+div, 
+p, 
+img, 
+ul, 
+li, 
+h1, 
+h2,  
+header,
+section {
     margin: 0;
     padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;}
+
+body,
+header,
+div, section {
+    display: flex;
+    display: -webkit-flex;
+    width: 100%;
+    -webkit-flex-row: row wrap;
+    flex-flow: row wrap;
+    flex-wrap: wrap;
 }
 
 body {
@@ -26,34 +45,40 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 100%;
 }
 
-h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+header {
+    width: 100vw;
+    justify-content: center;
+    margin: 5vw 0 3vw 0;
 }
+
+
+h1 {
+    font-family: 'Open Sans', sans-serif;  
+    font-size: 1.6em;
+}
+
 
 /*
  * Styles for the deck of cards
  */
 
 .deck {
-    width: 660px;
-    min-height: 680px;
+    width: 95vw;
+    min-height: 95vw;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-    padding: 32px;
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    border-radius: 1vw;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    margin: 0 0 3em;
 }
 
 .deck .card {
-    height: 125px;
-    width: 125px;
+    height: 20vw;
+    width: 20vw;
     background: #2e3d49;
     font-size: 0;
     color: #ffffff;
@@ -62,7 +87,6 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
 .deck .card.open {
@@ -89,8 +113,10 @@ h1 {
 
 .score-panel {
     text-align: left;
-    width: 345px;
+    width: 100vw;
     margin-bottom: 10px;
+    justify-content: space-between;
+    padding:  0 2.5vw 0 2.5vw ;
 }
 
 .score-panel .stars {
@@ -108,4 +134,5 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+    width: 10vw;
 }
