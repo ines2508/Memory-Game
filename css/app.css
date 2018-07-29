@@ -51,13 +51,13 @@ body {
 header {
     width: 100vw;
     justify-content: center;
-    margin: 5vw 0 3vw 0;
+    margin: 8vw 0 6vw 0;
 }
 
 
 h1 {
     font-family: 'Open Sans', sans-serif;  
-    font-size: 1.6em;
+    font-size: 8vw;
 }
 
 
@@ -96,13 +96,13 @@ h1 {
 }
 
 .deck .card.show {
-    font-size: 33px;
+    font-size: 10vw;
 }
 
 .deck .card.match {
     cursor: default;
     background: #02ccba;
-    font-size: 33px;
+    font-size: 10vw;
 }
 
 
@@ -114,16 +114,16 @@ h1 {
 .score-panel {
     text-align: left;
     width: 100vw;
-    margin-bottom: 10px;
+    margin-bottom: 5vw;
     justify-content: space-between;
-    padding:  0 2.5vw 0 2.5vw ;
+    padding:  0 5vw 0 5vw ;
+    font-size: 6vw;
 }
 
 .score-panel .stars {
     margin: 0;
     padding: 0;
     display: inline-block;
-    margin: 0 5px 0 0;
 }
 
 .score-panel .stars li {
@@ -132,7 +132,10 @@ h1 {
 }
 
 .score-panel .restart {
-    float: right;
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
     cursor: pointer;
-    width: 10vw;
+    width: 8vw;
+    min-width: 48px;
 }
