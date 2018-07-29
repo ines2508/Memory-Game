@@ -12,6 +12,7 @@
     function start() {
 
 // Shuffle function from http://stackoverflow.com/a/2450976
+
         function shuffle(array) {
             var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -53,33 +54,85 @@
 
         deck.appendChild(newDeck);
         createDeck(newList);
+
+        var symbolContainer = document.querySelectorAll(".card");
+
    
 // ---------------------- Panel ---------------------------------
-
-    function countMoves(list) {
-
+        
         var movesNumber = document.querySelector(".moves");
-        var count = (list.length % 2 === 0) ? (list.length / 2) : ((list.length / 2) - 0.5)
+        var userList = document.querySelectorAll(".match");
 
-        movesNumber.innerHTML = count;    
-    }
+        function progressMeasure(startTime) {
+
+            var stars = document.querySelectorAll(".stars i");
+            var star1 = stars[0];
+            var star2 = stars[1];
+            var star3 = stars[2];            
+            var countNumber = movesNumber.innerHTML;
+            var allGoodCards = userList.length;
+            var difference = countNumber - allGoodCards;
+
+            if (difference < 6) {
+
+                star1.classList.add("fa-star");
+                star2.classList.add("fa-star");
+                star3.classList.add("fa-star");
+                console.log("you have 3 stars")  
+
+            } else if (difference < 12) {
+                star1.classList.add("fa-star");
+                star2.classList.add("fa-star");
+                star3.classList.remove("fa-star");
+                console.log("you have 2 stars")  
+            } else if (difference < 18) {
+                star1.classList.add("fa-star");
+                star2.classList.remove("fa-star");
+                console.log("you have 1 stars")  
+            } else if (difference > 24) {
+                star1.classList.remove("fa-star");
+                console.log("you have 0 stars")  
+            }
+
+                    
+            console.log(countNumber);
+
+        //  setTimeout( function firstStar(){
+        //      console.log("you have it");
+        //  }, 1000);
+            
+        }
+
+        function countMoves(list) {
+
+            var count = (list.length % 2 === 0) ? (list.length / 2) : ((list.length / 2) - 0.5)
+
+            movesNumber.innerHTML = count;    
+        }
 
 
 // ---------------------- Cards checker --------------------------
 
-        var symbolContainer = document.querySelectorAll(".card");
+  //      var symbolContainer = document.querySelectorAll(".card");
 
 // Check win list
 
-        function checkWinList() {
-
+        function checkWinList(startTime) {
+            
             var userList = document.querySelectorAll(".match");
 
                 if (userList.length === 16) {
                     console.log("you win");
 
+                    var endTime = performance.now(); 
+                    var userTime = endTime - startTime;
+                    var roundUserTime = Math.round(userTime)
+                    console.log(roundUserTime);                         
+
+
                 } else {console.log(undefined)}
-                    console.log(userList);
+                  console.log(userList);
+            
         };
 
 
@@ -94,7 +147,7 @@
                     card1.classList.remove("open");
                     card2.classList.add("match");
                     card1.classList.add("match");
-                    console.log(openList);
+          //          console.log(openList);
                     console.log("good");
 
                     openCardList = [];
@@ -102,7 +155,7 @@
                 } else if (openList[0] != openList[1]) {
                     card2.classList.remove("open");
                     card1.classList.remove("open");
-                    console.log(openList);
+          //          console.log(openList);
                     console.log("bad");
 
                     openCardList = [];
@@ -129,24 +182,29 @@
 
             countMoves(countList);
             checkOpenList(openCardList, card1, card2);
-            checkWinList();
 
         };
 
 
 // Add eventListener to the cards and open class      
 
-    //    var symbolContainer = document.querySelectorAll(".card");
+  //     var symbolContainer = document.querySelectorAll(".card");
 
         function clickCard(){
 
-            for (var i = 0; i < 1000; i++) { 
+            for (var i = 0; i < 500; i++) { 
                 var oneCard = symbolContainer[i];
                 
                 oneCard.addEventListener("click", function(){
-                        var thisCard = this;
-                        this.classList.add("open", "show");
+
+                    var thisCard = this;
+                    this.classList.add("open", "show");
+                    var startTime = performance.now();
+
+                    progressMeasure(startTime);
                     checkCards(thisCard);
+                    checkWinList(startTime);
+
                 }, false);
             }
         };
