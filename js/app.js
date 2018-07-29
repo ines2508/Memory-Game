@@ -101,7 +101,7 @@
 // Open List for checking and counting
 
         var openCardList = [];
-        var movesList = [];
+        var countList = [];
 
         function checkCards(thisCard){
             
@@ -112,9 +112,9 @@
         
             var symbol = thisCard.querySelector(".show .fa").classList.item(1);
             openCardList.push(symbol);
-            movesList.push(symbol);
+            countList.push(symbol);
 
-            countMoves(movesList);
+            countMoves(countList);
             checkOpenList(openCardList, card1, card2);
 
         };
