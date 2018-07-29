@@ -57,14 +57,6 @@
 
         var symbolContainer = document.querySelectorAll(".card");
 
-        (function startGame() {
-
-            for (var i = 0; i < symbolContainer.length; i++) {
-
-                symbolContainer[i].classList.add("start-card");
-            }
-        }())
-
    
 // ---------------------- Panel ---------------------------------
         
@@ -81,22 +73,22 @@
             var allGoodCards = userList.length;
             var difference = countNumber - allGoodCards;
 
-            if (difference < 8) {
+            if (difference < 16) {
 
                 star1.classList.add("fa-star");
                 star2.classList.add("fa-star");
                 star3.classList.add("fa-star");
 
-            } else if (difference < 16) {
+            } else if (difference < 24) {
                 star1.classList.add("fa-star");
                 star2.classList.add("fa-star");
                 star3.classList.remove("fa-star");
 
-            } else if (difference < 24) {
+            } else if (difference < 32) {
                 star1.classList.add("fa-star");
                 star2.classList.remove("fa-star");
 
-            } else if (difference > 32) {
+            } else if (difference > 40) {
                 star1.classList.remove("fa-star");
             }
                     
@@ -113,7 +105,7 @@
 
 // ---------------------- Cards checker --------------------------
 
-     var symbolContainer = document.querySelectorAll(".card");
+ //    var symbolContainer = document.querySelectorAll(".card");
 
 // Animations for you won
 
@@ -147,37 +139,61 @@
 
 
                 } else {console.log(undefined)}
-                  console.log(userList);
-            
         };
+
+// Disable click
+
+        function disableClick() {
+            for (var i = 0; i < symbolContainer.length; i++){
+                symbolContainer[i].classList.add("disable-click");
+            }
+        }
 
 
 // Two cards open
 
         function checkOpenList(openList, card1, card2) {
 
-            if (openList.length == 2) {
+            if (openList.length === 2) {
+
+                disableClick()
 
                 if (openList[0] === openList[1]) {
                     card2.classList.remove("open");
                     card1.classList.remove("open");
                     card2.classList.add("match");
                     card1.classList.add("match");
-          //          console.log(openList);
-                    console.log("good");
 
                     openCardList = [];
 
                 } else if (openList[0] != openList[1]) {
+                    
                     card2.classList.remove("open");
                     card1.classList.remove("open");
-          //          console.log(openList);
-                    console.log("bad");
+                    card2.classList.add("wrong");
+                    card1.classList.add("wrong");
 
+                    setTimeout(
+                        function removeWrong(){
+                            card2.classList.remove("show");
+                            card1.classList.remove("show");        
+                            card2.classList.remove("wrong");
+                            card1.classList.remove("wrong");
+                    },900)
+                        
                     openCardList = [];
                 }
 
-            } else {console.log(undefined)};
+                setTimeout(
+                    function ableClick(){
+
+                        for (var i = 0; i < symbolContainer.length; i++){
+                            symbolContainer[i].classList.remove("disable-click");
+                        
+                        }   
+                }, 750)
+
+            } else  {console.log(undefined)};
         };
 
 
@@ -191,7 +207,7 @@
             var openCards = document.querySelectorAll(".open");
             var card1 = openCards[0];
             var card2 = openCards[1];
-        
+
             var symbol = thisCard.querySelector(".show .fa").classList.item(1);
             openCardList.push(symbol);
             countList.push(symbol);
@@ -204,7 +220,6 @@
 
 // Add eventListener to the cards and open class      
 
-  //     var symbolContainer = document.querySelectorAll(".card");
 
         function clickCard(){
 
@@ -215,7 +230,7 @@
 
                     var thisCard = this;
                     this.classList.add("open", "show");
-                    var startTime = performance.now();
+                    var startTime = performance.now();        
 
                     progressMeasure(startTime);
                     checkCards(thisCard);
@@ -242,16 +257,11 @@
         for (var i = 0; i < stars.length; i++){
             stars[i].classList.add("fa-star");
         };
-        
+
         var movesNumber = document.querySelector(".moves");
             movesNumber.innerHTML = 0;
 
-
         start();  
-
-
-
-
 
     };
 
