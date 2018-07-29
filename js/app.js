@@ -57,6 +57,14 @@
 
         var symbolContainer = document.querySelectorAll(".card");
 
+        (function startGame() {
+
+            for (var i = 0; i < symbolContainer.length; i++) {
+
+                symbolContainer[i].classList.add("start-card");
+            }
+        }())
+
    
 // ---------------------- Panel ---------------------------------
         
@@ -105,7 +113,20 @@
 
 // ---------------------- Cards checker --------------------------
 
-  //      var symbolContainer = document.querySelectorAll(".card");
+     var symbolContainer = document.querySelectorAll(".card");
+
+// Animations for you won
+
+        function youWon() {
+
+            for (var i = 0;  i < symbolContainer.length; i++) {
+                symbolContainer[i].classList.remove("show");   
+                symbolContainer[i].classList.remove("match");   
+                symbolContainer[i].classList.add("win");   
+                console.log(symbolContainer);
+            }
+        }
+
 
 // Check win list
 
@@ -114,13 +135,15 @@
             var userList = document.querySelectorAll(".match");
 
                 if (userList.length === 16) {
-                    console.log("you win");
 
+                    console.log("you win");
                     var endTime = performance.now(); 
                     var userTime = endTime - startTime;
                         userTime *= 10;
                     var roundUserTime = Math.round(userTime)
-                    console.log(roundUserTime);                         
+                    console.log(roundUserTime);    
+                    
+                    youWon();
 
 
                 } else {console.log(undefined)}
@@ -210,9 +233,26 @@
 // --------------------- Restart ----------------------------
 
     function restartFunction() {
+       
         var deckRemove = document.querySelector(".deck");
         deckRemove.innerHTML = "";
-        start();
+
+        var stars = document.querySelectorAll(".stars i");
+        
+        for (var i = 0; i < stars.length; i++){
+            stars[i].classList.add("fa-star");
+        };
+        
+        var movesNumber = document.querySelector(".moves");
+            movesNumber.innerHTML = 0;
+
+
+        start();  
+
+
+
+
+
     };
 
     resetButton.addEventListener("click", restartFunction, false);
