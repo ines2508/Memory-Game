@@ -69,6 +69,20 @@
 
         var symbolContainer = document.querySelectorAll(".card");
 
+// Check win list
+
+        function checkWinList() {
+
+            var userList = document.querySelectorAll(".match");
+
+                if (userList.length === 16) {
+                    console.log("you win");
+
+                } else {console.log(undefined)}
+                    console.log(userList);
+        };
+
+
 // Two cards open
 
         function checkOpenList(openList, card1, card2) {
@@ -105,7 +119,6 @@
 
         function checkCards(thisCard){
             
-
             var openCards = document.querySelectorAll(".open");
             var card1 = openCards[0];
             var card2 = openCards[1];
@@ -116,6 +129,7 @@
 
             countMoves(countList);
             checkOpenList(openCardList, card1, card2);
+            checkWinList();
 
         };
 
@@ -126,7 +140,7 @@
 
         function clickCard(){
 
-            for (var i = 0; i < 16; i++) { 
+            for (var i = 0; i < 1000; i++) { 
                 var oneCard = symbolContainer[i];
                 
                 oneCard.addEventListener("click", function(){
