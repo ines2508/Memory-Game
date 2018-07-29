@@ -248,21 +248,40 @@
 // --------------------- Restart ----------------------------
 
     function restartFunction() {
-       
-        var deckRemove = document.querySelector(".deck");
-        deckRemove.innerHTML = "";
 
         var stars = document.querySelectorAll(".stars i");
-        
+            
         for (var i = 0; i < stars.length; i++){
             stars[i].classList.add("fa-star");
         };
 
+
         var movesNumber = document.querySelector(".moves");
             movesNumber.innerHTML = 0;
 
-        start();  
 
+        var symbolContainer = document.querySelectorAll(".card");
+
+        (function animationReset(){
+
+            for (var i = 0; i < symbolContainer.length; i++){
+                symbolContainer[i].classList.add("reset-card");
+                symbolContainer[i].classList.remove("match");
+                symbolContainer[i].classList.remove("show");
+            
+            }
+        }())   
+
+       
+        setTimeout(function wait() {
+
+            var deckRemove = document.querySelector(".deck");
+            deckRemove.innerHTML = "";
+    
+    
+            start();      
+
+        }, 750)
     };
 
     resetButton.addEventListener("click", restartFunction, false);
