@@ -550,22 +550,52 @@ body {
     width: 100%;
 }
 
+/* ------------------Header ----------------------- */
+
 header {
     width: 100vw;
     justify-content: center;
     margin: 8vw 0 6vw 0;
 }
 
-
 h1 {
     font-family: 'Open Sans', sans-serif;  
     font-size: 8vw;
 }
 
+/* ----------------- Panel ------------------------- */
 
-/*
- * Styles for the deck of cards
- */
+.score-panel {
+    text-align: left;
+    width: 100vw;
+    margin-bottom: 5vw;
+    justify-content: space-between;
+    padding:  0 5vw 0 5vw ;
+    font-size: 6vw;
+}
+
+.score-panel .stars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.score-panel .stars li {
+    list-style: none;
+    display: inline-block;
+}
+
+.score-panel .restart {
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+    cursor: pointer;
+    width: 8vw;
+    min-width: 48px;
+}
+
+
+/* ------------------- Deck ------------------------*/
 
 .deck {
     width: 95vw;
@@ -577,6 +607,11 @@ h1 {
     justify-content: space-around;
     align-items: center;
 }
+
+
+
+
+/* ------------------ Cards ------------------------*/
 
 .deck .card {
     height: 20vw;
@@ -596,7 +631,6 @@ h1 {
     background: #02b3e4;
     cursor: default;
 }
-
 
 .deck .card.show {
     font-size: 10vw;    
@@ -643,10 +677,6 @@ h1 {
 
 .disable-click {
     pointer-events: none;
-}
-
-.able-click {
-    pointer-events: auto;
 }
 
 .card.win {
@@ -715,35 +745,4 @@ h1 {
 
 
 
-/*
- * Styles for the Score Panel
- */
 
-.score-panel {
-    text-align: left;
-    width: 100vw;
-    margin-bottom: 5vw;
-    justify-content: space-between;
-    padding:  0 5vw 0 5vw ;
-    font-size: 6vw;
-}
-
-.score-panel .stars {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-}
-
-.score-panel .stars li {
-    list-style: none;
-    display: inline-block;
-}
-
-.score-panel .restart {
-    display: flex;
-    justify-content: flex-end;
-    text-align: right;
-    cursor: pointer;
-    width: 8vw;
-    min-width: 48px;
-}
