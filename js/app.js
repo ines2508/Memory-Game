@@ -26,6 +26,7 @@
             return array;
         };
         shuffle(allCards);
+        
         var newList = shuffle(allCards);
 
 // Creat new Deck of Cards    
@@ -64,89 +65,64 @@
     }
 
 
-
 // ---------------------- Cards checker --------------------------
 
-        var symbolList = [];
-        var listOpen = [];
         var symbolContainer = document.querySelectorAll(".card");
-
-// If card match
-
-        function cardMatch(cardA, cardB) {
-            cardB.classList.remove("open");  
-            cardA.classList.remove("open");
-            console.log("good");
-
-            cardA.classList.add("match");
-            cardB.classList.add("match");
-            listOpen = [];
-        }
-
-// If cards don't match
-
-        function cardNoMatch(cardA, cardB) {
-            cardB.classList.remove("open");
-            cardA.classList.remove("open");
-           // cardB.classList.remove("show");    
-           // cardA.classList.remove("show");
-            console.log("bad");
-            listOpen = [];      
-        }
 
 // Two cards open
 
-        function getOpenCard(){
-            var cardOpenSymbol = document.querySelectorAll(".open .fa");
-            var cardOpen = document.querySelectorAll(".open");
-            var cardA = cardOpen[0];
-            var cardB = cardOpen[1];
-            var card1 = cardOpenSymbol[0].classList.item(1);
-            var card2 = cardOpenSymbol[1].classList.item(1);
+        function checkOpenList(openList, card1, card2) {
 
-            listOpen.push(card1);
-            listOpen.push(card2);
-            console.log(listOpen);
+            if (openList.length == 2) {
 
-            if (listOpen.length = 2) {
-                if (card1 === card2) {
-                    cardMatch(cardA, cardB); 
+                if (openList[0] === openList[1]) {
+                    card2.classList.remove("open");
+                    card1.classList.remove("open");
+                    card2.classList.add("match");
+                    card1.classList.add("match");
+                    console.log(openList);
+                    console.log("good");
 
-                } else if (card1 != card2) {
-                    cardNoMatch(cardA, cardB); 
+                    openCardList = [];
 
-                }  else {console.log(undefined)}  
+                } else if (openList[0] != openList[1]) {
+                    card2.classList.remove("open");
+                    card1.classList.remove("open");
+                    console.log(openList);
+                    console.log("bad");
 
-            } else if (listOpen > 2) {
-                //  cardB.classList.remove("show");    
-                //  cardA.classList.remove("show");
-            }   
-        }
+                    openCardList = [];
+                }
+
+            } else {console.log(undefined)};
+        };
 
 
-        function getSymbols(){
+// Open List for checking and counting
 
-            for (var i = 0; i < 16; i++) {
+        var openCardList = [];
+        var movesList = [];
+
+        function checkCards(thisCard){
+            
+
+            var openCards = document.querySelectorAll(".open");
+            var card1 = openCards[0];
+            var card2 = openCards[1];
         
-                var symbol = symbolContainer[i];
-                if (symbol.classList.item(1) == "open"){
-                    var openCard = symbol.firstChild.classList.item(1);
-                } 
-            }
-            symbolList.push(openCard);
+            var symbol = thisCard.querySelector(".show .fa").classList.item(1);
+            openCardList.push(symbol);
+            movesList.push(symbol);
 
-            countMoves(symbolList);
-            getOpenCard();
+            countMoves(movesList);
+            checkOpenList(openCardList, card1, card2);
+
         };
 
-// Add class Open, Show to cliked Card;
 
-        var symbolContainer = document.querySelectorAll(".card");
+// Add eventListener to the cards and open class      
 
-        function checkCards(){
-          
-            getSymbols();
-        };
+    //    var symbolContainer = document.querySelectorAll(".card");
 
         function clickCard(){
 
@@ -154,15 +130,19 @@
                 var oneCard = symbolContainer[i];
                 
                 oneCard.addEventListener("click", function(){
+                        var thisCard = this;
                         this.classList.add("open", "show");
-
-                    checkCards();
+                    checkCards(thisCard);
                 }, false);
             }
         };
 
+
         clickCard();
     };
+
+
+// --------------------- Restart ----------------------------
 
     function restartFunction() {
         var deckRemove = document.querySelector(".deck");
