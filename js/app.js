@@ -1,11 +1,26 @@
 
-    var allCards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle", "fa-diamond", "fa-bomb", "fa-leaf", "fa-bomb", "fa-bolt", "fa-bicycle", "fa-paper-plane-o", "fa-cube"];
+    var allCards = ["fa-diamond", "fa-anchor", "fa-bomb", "fa-paper-plane-o", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle", "fa-diamond",   "fa-bolt", "fa-bicycle", "fa-leaf", "fa-paper-plane-o", "fa-bomb","fa-cube"];
 
     var panel = document.querySelector(".score-panel");
     var resetButton = document.querySelector(".restart");
-//    console.log(panel);
-//    console.log(resetButton);
+    var startButton = document.querySelector(".start-button");
 
+// ---------------------- Start game --------------------------------
+
+    // Waiting till the start animation will finished
+
+    setTimeout( function startDeck() {
+
+        var startDeck = document.querySelector(".start-deck");
+        startDeck.classList.remove("hide");
+
+        var symbolBox = document.querySelector(".symbol-box");
+        symbolBox.classList.add("hide");
+    
+    }, 3000);
+        
+
+    
 
 // ---------------------- Cards shuffler -----------------------------
 
@@ -294,6 +309,17 @@
     resetButton.addEventListener("click", restartFunction, false);
     
 
+    // ------------------- Start ----------------------------
+
+    function startGame() {
+
+        var deckRemove = document.querySelector(".deck");
+        deckRemove.innerHTML = "";
+        
+        start();      
+    }
+    
+    startButton.addEventListener("click", startGame, false);    
 
 
 
