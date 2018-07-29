@@ -56,14 +56,13 @@
         createDeck(newList);
 
         var symbolContainer = document.querySelectorAll(".card");
-
    
 // ---------------------- Panel ---------------------------------
         
         var movesNumber = document.querySelector(".moves");
         var userList = document.querySelectorAll(".match");
 
-        function progressMeasure(startTime) {
+        function progressMeasure() {
 
             var stars = document.querySelectorAll(".stars i");
             var star1 = stars[0];
@@ -95,6 +94,7 @@
             console.log(countNumber);            
         }
 
+
         function countMoves(list) {
 
             var count = (list.length % 2 === 0) ? (list.length / 2) : ((list.length / 2) - 0.5)
@@ -105,7 +105,6 @@
 
 // ---------------------- Cards checker --------------------------
 
- //    var symbolContainer = document.querySelectorAll(".card");
 
 // Animations for you won
 
@@ -117,7 +116,7 @@
                 symbolContainer[i].classList.add("win");   
                 console.log(symbolContainer);
             }
-        }
+        };
 
 
 // Check win list
@@ -137,17 +136,16 @@
                     
                     youWon();
 
-
                 } else {console.log(undefined)}
         };
 
-// Disable click
+// Disable click - to prevent from clicking when two cards are open
 
         function disableClick() {
             for (var i = 0; i < symbolContainer.length; i++){
                 symbolContainer[i].classList.add("disable-click");
             }
-        }
+        };
 
 
 // Two cards open
@@ -172,6 +170,8 @@
                     card1.classList.remove("open");
                     card2.classList.add("wrong");
                     card1.classList.add("wrong");
+                    
+                // Needed time to remember the cards
 
                     setTimeout(
                         function removeWrong(){
@@ -179,10 +179,12 @@
                             card1.classList.remove("show");        
                             card2.classList.remove("wrong");
                             card1.classList.remove("wrong");
-                    },900)
+                    },1000)
                         
                     openCardList = [];
                 }
+
+                // No new cards will be shown during "remembering"
 
                 setTimeout(
                     function ableClick(){
@@ -191,13 +193,13 @@
                             symbolContainer[i].classList.remove("disable-click");
                         
                         }   
-                }, 750)
+                }, 1000)
 
             } else  {console.log(undefined)};
         };
 
 
-// Open List for checking and counting
+// Seting up Open List and Count List
 
         var openCardList = [];
         var countList = [];
@@ -218,7 +220,8 @@
         };
 
 
-// Add eventListener to the cards and open class      
+// Add eventListener to the cards, giving them "open" class
+// Setting start time of the game    
 
 
         function clickCard(){
@@ -248,17 +251,21 @@
 // --------------------- Restart ----------------------------
 
     function restartFunction() {
+    
+        // Reseting stars
 
-        var stars = document.querySelectorAll(".stars i");
+        var stars = document.querySelectorAll(".stars i");    
             
         for (var i = 0; i < stars.length; i++){
             stars[i].classList.add("fa-star");
         };
 
+        // Reseting moves number
 
         var movesNumber = document.querySelector(".moves");
             movesNumber.innerHTML = 0;
 
+        // Adding restar animation for cards
 
         var symbolContainer = document.querySelectorAll(".card");
 
@@ -272,12 +279,12 @@
             }
         }())   
 
+        // Waiting till restart animation will end
        
         setTimeout(function wait() {
 
             var deckRemove = document.querySelector(".deck");
             deckRemove.innerHTML = "";
-    
     
             start();      
 
