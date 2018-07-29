@@ -118,6 +118,7 @@
 
                     var endTime = performance.now(); 
                     var userTime = endTime - startTime;
+                        userTime *= 10;
                     var roundUserTime = Math.round(userTime)
                     console.log(roundUserTime);                         
 
