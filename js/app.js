@@ -73,22 +73,22 @@
             var allGoodCards = userList.length;
             var difference = countNumber - allGoodCards;
 
-            if (difference < 6) {
+            if (difference < 8) {
 
                 star1.classList.add("fa-star");
                 star2.classList.add("fa-star");
                 star3.classList.add("fa-star");
 
-            } else if (difference < 12) {
+            } else if (difference < 16) {
                 star1.classList.add("fa-star");
                 star2.classList.add("fa-star");
                 star3.classList.remove("fa-star");
 
-            } else if (difference < 18) {
+            } else if (difference < 24) {
                 star1.classList.add("fa-star");
                 star2.classList.remove("fa-star");
-                
-            } else if (difference > 24) {
+
+            } else if (difference > 32) {
                 star1.classList.remove("fa-star");
             }
                     
