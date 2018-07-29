@@ -78,29 +78,21 @@
                 star1.classList.add("fa-star");
                 star2.classList.add("fa-star");
                 star3.classList.add("fa-star");
-                console.log("you have 3 stars")  
 
             } else if (difference < 12) {
                 star1.classList.add("fa-star");
                 star2.classList.add("fa-star");
                 star3.classList.remove("fa-star");
-                console.log("you have 2 stars")  
+
             } else if (difference < 18) {
                 star1.classList.add("fa-star");
                 star2.classList.remove("fa-star");
-                console.log("you have 1 stars")  
+                
             } else if (difference > 24) {
                 star1.classList.remove("fa-star");
-                console.log("you have 0 stars")  
             }
-
                     
-            console.log(countNumber);
-
-        //  setTimeout( function firstStar(){
-        //      console.log("you have it");
-        //  }, 1000);
-            
+            console.log(countNumber);            
         }
 
         function countMoves(list) {
