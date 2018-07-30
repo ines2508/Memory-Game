@@ -194,7 +194,7 @@
                             card1.classList.remove("show");        
                             card2.classList.remove("wrong");
                             card1.classList.remove("wrong");
-                    },1000)
+                    },1300)
                         
                     openCardList = [];
                 }
@@ -208,7 +208,7 @@
                             symbolContainer[i].classList.remove("disable-click");
                         
                         }   
-                }, 1000)
+                }, 1300)
 
             } else  {console.log(undefined)};
         };
