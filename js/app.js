@@ -122,14 +122,6 @@ document.addEventListener("DOMContentLoaded", function(){
 // ---------------------- Cards checker --------------------------
 
 
-var winMessage = document.querySelector(".win-message");
-winMessage.classList.remove("hide");
-var movesNumber = document.querySelector(".moves");
-var movesMessage = document.querySelector(".moves-message");
-movesMessage.appendChild(movesNumber);
-var gameTime = document.querySelector(".game-time");
-// gameTime.appendChild(roundUserTime);
-
 // Animations for you won
 
         function youWon() {
@@ -347,8 +339,9 @@ var gameTime = document.querySelector(".game-time");
 
         setTimeout(function moveDeck() {
             var deckRemove = document.querySelector(".deck");
-            deckRemove.innerHTML = "";
-            
+            deckRemove.innerHTML = "";                var scorePanel = document.querySelector(".score-panel");
+            scorePanel.classList.remove("hide");
+        
             start();          
         }, 800);
     }

@@ -1187,7 +1187,7 @@ header {
 }
 
 .start-deck {
-    width: 100vw;
+    width: 100%;
     justify-content: center;
     padding: 0 5vw 0 5vw;
     text-align: center;
@@ -1218,11 +1218,13 @@ header {
 }
 .start-motto {
     width: 100vw;
+    line-height: 150%;
 }
 
 .start-button {
     background: #4a18be;
-    padding: 2vw 5vw 2vw 5vw;
+    border-radius: 2vw;
+    padding: 5vw 5vw 5vw 5vw;
     margin: 10vw 0 10vw 0;
     display: flex;
     cursor: pointer;
