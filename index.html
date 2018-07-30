@@ -6,6 +6,8 @@
     <title>Memory</title>
     <meta name="description" content="Memory game">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/app.css">
 </head>
@@ -22,13 +24,12 @@
         		<li><i class="fa fa-star"></i></li>
         		<li><i class="fa fa-star"></i></li>
         	</ul>
-
         	<p class="move_panel"><span class="moves">0</span> Moves</p>
-
             <div class="restart">
         		<i class="fa fa-repeat"></i>
         	</div>
         </section>
+
         <section class="start-animation">
             <div class="symbol-box">
                 <span><i class="start-symbol fa fa-diamond"></i></span>
@@ -49,28 +50,35 @@
                 <span><i class="start-symbol fa fa-bomb"></i></span>
                 <span><i class="start-symbol fa fa-cube"></i></span>
             </div>
-        
         </section>
-        <ul class="deck">
 
-            <div class="start-deck hide">
+        <section class="start-deck hide">
                 <p class="start-motto">Check how good is your memory!<br>
                     Find the hidden pairs.</p>
-                <p class="start-motto">Maybe you the next Einstein?!</p>
+                <i class="fas fa-user-graduate"></i>
                 <h2 class="start-button">Start the game!</h2>
-            </div>
+                <p class="start-motto-ein">Maybe you are the next Einstein?!</p>
+
+        </section>
+
+        <ul class="deck hide">
             
         </ul>
         <section class="win-message hide">
             <diV class="win-box">
                     <h2 class="win-title">You won the game!</h2>
+                    <i class="fas fa-trophy"></i>
                     <p class="win-text">It took you:</p>
                     <ul class="score">
                         <li><span class="moves-message"></span> moves</li>
                         <li><span class="game-time"></span> seconds</li>
                     </ul>
+                    <div class="button-container">
+                        <h2 class="play-again">Play again</h2>
+                    </div>
             </diV>
         </section>
+    
      
         
     </div>

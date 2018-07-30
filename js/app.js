@@ -132,22 +132,29 @@ document.addEventListener("DOMContentLoaded", function(){
             movesMessage.textContent = movesNumber;
             var gameTime = document.querySelector(".game-time");
             gameTime.textContent = roundUserTime;
+            symbolContainer[i].classList.add("win");   
+
+            function playAgain(){
+                restartFunction()  
+            };
+
+            var playAgain = document.querySelector(".play-again");
+            playAgain.addEventListener("click", playAgain, false);
+
 
             
 
-            for (var i = 0;  i < symbolContainer.length; i++) {
-                symbolContainer[i].classList.remove("show");   
-                symbolContainer[i].classList.remove("match");   
-                symbolContainer[i].classList.add("win");   
-                console.log(symbolContainer);
-            }
+      //      for (var i = 0;  i < symbolContainer.length; i++) {
+            //    symbolContainer[i].classList.remove("show");   
+            //    symbolContainer[i].classList.remove("match");   
+       //     }
 
 
-            setTimeout(function(){
-                winMessage.classList.add("hide");
-                restartFunction()
+     //       setTimeout(function(){
+      //          winMessage.classList.add("hide");
+      //          restartFunction()
 
-            }, 4000)
+      //      }, 4000)
 
        };
 
@@ -163,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     console.log("you win");
                     var endTime = performance.now(); 
                     var userTime = endTime - startTime;
-                     //   userTime *= 10;
+                        userTime *= 10;
                     var roundUserTime = userTime.toFixed(2);
                     console.log(userTime);    
                     
@@ -332,11 +339,14 @@ document.addEventListener("DOMContentLoaded", function(){
 
     function startGame() {
 
+
         var startDeck = document.querySelector(".start-deck");
         startDeck.classList.add("reset-card");
 
         setTimeout(function moveDeck() {
+            startDeck.classList.add("hide");
             var deckRemove = document.querySelector(".deck");
+            deckRemove.classList.remove("hide");
             deckRemove.innerHTML = "";                
             var scorePanel = document.querySelector(".score-panel");
             scorePanel.classList.remove("hide");
