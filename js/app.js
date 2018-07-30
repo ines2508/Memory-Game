@@ -1,13 +1,13 @@
-
+document.addEventListener("DOMContentLoaded", function(){
+    
     var allCards = ["fa-diamond", "fa-anchor", "fa-bomb", "fa-paper-plane-o", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle", "fa-diamond",   "fa-bolt", "fa-bicycle", "fa-leaf", "fa-paper-plane-o", "fa-bomb","fa-cube"];
 
-    var panel = document.querySelector(".score-panel");
     var resetButton = document.querySelector(".restart");
     var startButton = document.querySelector(".start-button");
 
-// ---------------------- Start game --------------------------------
+// ----------------------After Start Animation --------------------------------
 
-    // Waiting till the start animation will finished
+    // Waiting till the finish of the animation to remove start deck
 
     setTimeout( function startDeck() {
 
@@ -48,6 +48,7 @@
 // Creat new Deck of Cards    
 
         var deck = document.querySelector(".deck");
+        deck.classList.add("start-card");
         var fragment = document.createDocumentFragment();
 
         function createDeck(list) {
@@ -114,16 +115,34 @@
 
             var count = (list.length % 2 === 0) ? (list.length / 2) : ((list.length / 2) - 0.5)
 
-            movesNumber.innerHTML = count;    
+            movesNumber.innerHTML = count;                
         }
 
 
 // ---------------------- Cards checker --------------------------
 
 
+var winMessage = document.querySelector(".win-message");
+winMessage.classList.remove("hide");
+var movesNumber = document.querySelector(".moves");
+var movesMessage = document.querySelector(".moves-message");
+movesMessage.appendChild(movesNumber);
+var gameTime = document.querySelector(".game-time");
+// gameTime.appendChild(roundUserTime);
+
 // Animations for you won
 
         function youWon() {
+
+            var winMessage = document.querySelector(".win-message");
+            winMessage.classList.remove("hide");
+            var movesNumber = document.querySelector(".moves");
+            var movesMessage = document.querySelector(".moves-message");
+            movesMessage.innerHTML = movesNumber;
+            var gameTime = document.querySelector(".game-time");
+            gameTime.appendChild(roundUserTime);
+
+            
 
             for (var i = 0;  i < symbolContainer.length; i++) {
                 symbolContainer[i].classList.remove("show");   
@@ -131,7 +150,16 @@
                 symbolContainer[i].classList.add("win");   
                 console.log(symbolContainer);
             }
-        };
+
+
+
+            setTimeout(function(){
+                winMessage.classList.add("hide");
+                restartFunction()
+
+            }, 1500)
+
+       };
 
 
 // Check win list
@@ -145,9 +173,9 @@
                     console.log("you win");
                     var endTime = performance.now(); 
                     var userTime = endTime - startTime;
-                        userTime *= 10;
-                    var roundUserTime = Math.round(userTime)
-                    console.log(roundUserTime);    
+                     //   userTime *= 10;
+                    var roundUserTime = Math.round(userTime);
+                    console.log(userTime);    
                     
                     youWon();
 
@@ -194,7 +222,7 @@
                             card1.classList.remove("show");        
                             card2.classList.remove("wrong");
                             card1.classList.remove("wrong");
-                    },1300)
+                    },1180)
                         
                     openCardList = [];
                 }
@@ -208,7 +236,7 @@
                             symbolContainer[i].classList.remove("disable-click");
                         
                         }   
-                }, 1300)
+                }, 1180)
 
             } else  {console.log(undefined)};
         };
@@ -311,15 +339,23 @@
 
     // ------------------- Start ----------------------------
 
+
     function startGame() {
 
-        var deckRemove = document.querySelector(".deck");
-        deckRemove.innerHTML = "";
-        
-        start();      
+        var startDeck = document.querySelector(".start-deck");
+        startDeck.classList.add("reset-card");
+
+        setTimeout(function moveDeck() {
+            var deckRemove = document.querySelector(".deck");
+            deckRemove.innerHTML = "";
+            
+            start();          
+        }, 800);
     }
     
     startButton.addEventListener("click", startGame, false);    
+
+});
 
 
 
