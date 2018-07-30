@@ -46,10 +46,18 @@ document.addEventListener("DOMContentLoaded", function(){
         
         var newList = shuffle(allCards);
 
+// Bringing back score panel
+
+        var scorePanel = document.querySelector(".score-panel");
+        scorePanel.classList.remove("hide");
+
+
 // Creat new Deck of Cards    
 
         var deck = document.querySelector(".deck");
-            deck.classList.add("start-card");
+        deck.classList.remove("hide");
+        deck.classList.add("start-card");
+
         var fragment = document.createDocumentFragment();
 
         function createDeck(list) {
@@ -146,10 +154,10 @@ document.addEventListener("DOMContentLoaded", function(){
                 movesMessage.textContent = movesNumber;
                 var gameTime = document.querySelector(".game-time");
                 gameTime.textContent = roundUserTime;
-                var playAgain = document.querySelector(".play-again");
-                playAgain.addEventListener("click", restartFunction, false); 
+                var scorePanel = document.querySelector(".score-panel");
+                scorePanel.classList.add("hide");
 
-            }, 2050);
+            }, 2000);
        };
 
 
@@ -193,9 +201,6 @@ document.addEventListener("DOMContentLoaded", function(){
                     card1.classList.remove("open");
                     card2.classList.add("match");
                     card1.classList.add("match");
-                    card1.classList.add("disable-click");
-                    card2.classList.add("disable-click");
-
 
                     openCardList = [];
 
@@ -205,7 +210,9 @@ document.addEventListener("DOMContentLoaded", function(){
                     card1.classList.remove("open");
                     card2.classList.add("wrong");
                     card1.classList.add("wrong");
-                    
+
+                    openCardList = [];
+    
                 // Needed time to remember the cards
 
                     setTimeout(
@@ -216,7 +223,6 @@ document.addEventListener("DOMContentLoaded", function(){
                             card1.classList.remove("wrong");
                     },1000)
                         
-                    openCardList = [];
                 }
 
                 // No new cards will be shown during "remembering"
@@ -225,13 +231,11 @@ document.addEventListener("DOMContentLoaded", function(){
                     function ableClick(){
 
                         for (var i = 0; i < symbolContainer.length; i++){
-                            
-                            if (!symbolContainer[i].classList.contains("match")){
-                                symbolContainer[i].classList.remove("disable-click");
-                            } else {console.log(undefined)}
+                                                     
+                            symbolContainer[i].classList.remove("disable-click");
                         
                         }   
-                }, 1010)
+                }, 1000)
 
             } else  {console.log(undefined)};
         };
@@ -291,6 +295,49 @@ var timeTable = [];
     };
 
 
+
+// --------------------- Play Again ----------------------------
+
+var playAgain = document.querySelector(".play-again");
+
+function playAgainFunction() {
+
+
+    // Removing win Message
+
+    var winMessage = document.querySelector(".win-message");
+    winMessage.classList.add("hide");
+
+    // Reseting stars
+
+    var stars = document.querySelectorAll(".stars i");    
+        
+    for (var i = 0; i < stars.length; i++){
+        stars[i].classList.add("fa-star");
+    };
+
+    // Reseting move's number
+
+    var movesNumber = document.querySelector(".moves");
+        movesNumber.innerHTML = 0;
+
+
+    // Waiting till restart animation will end
+   
+    setTimeout(function wait() {
+
+        var deckRemove = document.querySelector(".deck");
+        deckRemove.innerHTML = "";
+
+        start();      
+
+    }, 1000)
+};
+
+
+playAgain.addEventListener("click", playAgainFunction, false);
+
+
 // --------------------- Restart ----------------------------
 
     function restartFunction() {
@@ -301,7 +348,7 @@ var timeTable = [];
         var winMessage = document.querySelector(".win-message");
         winMessage.classList.add("hide");
 
-        // Bring back Deck TODO - osobno dla play again (bez tego)
+        // Bring back Deck 
 
         var deckRemove = document.querySelector(".deck");
         deckRemove.classList.remove("hide");
@@ -341,7 +388,7 @@ var timeTable = [];
     
             start();      
 
-        }, 1100)
+        }, 1000)
     };
 
     resetButton.addEventListener("click", restartFunction, false);

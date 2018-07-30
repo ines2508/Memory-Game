@@ -1128,6 +1128,7 @@ div, section,
 
 h1, h2, h3, p, ul, li, span {
     font-family: 'Love Ya Like A Sister', 'Quicksand', sans-serif;
+    font-kerning: auto;
 }
 
 body {
@@ -1286,7 +1287,7 @@ header {
 
 
 .start-deck {
-    height: 70vh;
+    height: 78vh;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -1312,10 +1313,13 @@ header {
     -ms-animation-fill-mode:forwards; /*IE 10+*/
 }
 
-
+.motto-box{
+  width: 80%;
+}
 .start-motto {
     width: 100%;
     line-height: 180%;
+    font-size: 1.2em;
 }
 
 .start-graduate {
@@ -1324,9 +1328,10 @@ header {
 }
 
 .fa-user-graduate {
-    font-size: 30vw;
     width: 100%;
+    font-size: 35vw;
 }
+
 .start-motto-ein {
     padding: 3vw 0 3vw 0;
     color: #fff;
@@ -1339,12 +1344,12 @@ header {
     text-align: center;
 }
 
-.start-button, 
-.play-again {
+.start-button {
     background: #cccccc;
     border-radius: 2vw;
     padding: 5vw 5vw 5vw 5vw;
     display: flex;
+    font-size: 2em;
     cursor: pointer;
 }
 
@@ -1357,6 +1362,12 @@ header {
   margin: 4vh 0 2vh 0;
   justify-content: space-between;
   padding:  0 5vw 0 5vw ;
+}
+
+.moves, 
+.stars,
+.restart {
+  font-size: 1.6em;
 }
 
 .score-panel .stars {
@@ -1406,8 +1417,6 @@ header {
     align-items: center;
 }
 
-
-
 .deck .card.open {
     transform: rotateY(0);
     background: #02b3e4;
@@ -1419,7 +1428,7 @@ header {
 }
 
 .deck .card.match {
-    cursor: default;
+    pointer-events: none;
     background: #02ccba;
     font-size: 10vw;
     animation: theyMatch linear 1s;
@@ -1528,20 +1537,22 @@ header {
 /* ------------------- Win message ---------------------- */
 
 .win-message {
-  height: 70vh;
+  height: 78vh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   font-size: 1em;
-  padding: 1vh 0 0 0;
+  padding: 4vh 0 0 0;
 }
 
 .win-title {
   width: 100%;
   text-align: center;
+  font-size: 1.8em;
 }
+
 .win-text {
   text-align: right;
   width: 40%;
@@ -1554,6 +1565,7 @@ header {
   line-height: 180%;
   width: 40%;
 }
+
 .moves-message,
 .game-time {
   font-size: 150%;
@@ -1566,10 +1578,19 @@ header {
 }
 
 .fa-trophy {
-  font-size: 30vw;
+  font-size: 35vw;
   justify-content: center;
   text-align: center;
   width: 100%;
+}
+
+.play-again {
+  background: #cccccc;
+  border-radius: 2vw;
+  padding: 5vw 5vw 5vw 5vw;
+  display: flex;
+  font-size: 1.8em;
+  cursor: pointer;
 }
 
 .hide {
