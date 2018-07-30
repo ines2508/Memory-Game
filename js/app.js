@@ -14,8 +14,9 @@ document.addEventListener("DOMContentLoaded", function(){
         var startDeck = document.querySelector(".start-deck");
         startDeck.classList.remove("hide");
 
-        var symbolBox = document.querySelector(".symbol-box");
-        symbolBox.classList.add("hide");
+        var startAnimation = document.querySelector(".start-animation");
+        startAnimation.classList.add("hide");
+        
     
     }, 3000);
         
@@ -88,34 +89,35 @@ document.addEventListener("DOMContentLoaded", function(){
             var allGoodCards = userList.length;
             var difference = countNumber - allGoodCards;
 
-            if (difference < 16) {
+            if (difference < 17) {
 
                 star1.classList.add("fa-star");
                 star2.classList.add("fa-star");
                 star3.classList.add("fa-star");
 
-            } else if (difference < 24) {
+            } else if (difference >= 17 && difference < 25) {
                 star1.classList.add("fa-star");
                 star2.classList.add("fa-star");
                 star3.classList.remove("fa-star");
 
-            } else if (difference < 32) {
+            } else if (difference >= 25 && difference < 33) {
                 star1.classList.add("fa-star");
                 star2.classList.remove("fa-star");
 
-            } else if (difference > 40) {
+            } else if (difference >=33) {
                 star1.classList.remove("fa-star");
             }
-                    
-            console.log(countNumber);            
         }
 
 
         function countMoves(list) {
 
-            var count = (list.length % 2 === 0) ? (list.length / 2) : ((list.length / 2) - 0.5)
+            var movesText = document.querySelector(".moves-text");
+            var count = (list.length % 2 === 0) ? (list.length / 2) : ((list.length / 2) - 0.5);
 
             movesNumber.innerHTML = count;  
+
+            movesText.textContent = (count === 1) ? "Move" : "Moves";
         }
 
 // ---------------------- Cards checker --------------------------
@@ -125,37 +127,24 @@ document.addEventListener("DOMContentLoaded", function(){
 
         function youWon(roundUserTime) {
 
-            var winMessage = document.querySelector(".win-message");
-            winMessage.classList.remove("hide");
-            var movesNumber = document.querySelector(".moves").textContent;
-            var movesMessage = document.querySelector(".moves-message");
-            movesMessage.textContent = movesNumber;
-            var gameTime = document.querySelector(".game-time");
-            gameTime.textContent = roundUserTime;
-            symbolContainer[i].classList.add("win");   
-
-            function playAgain(){
-                restartFunction()  
-            };
-
-            var playAgain = document.querySelector(".play-again");
-            playAgain.addEventListener("click", playAgain, false);
-
+            for (var i = 0;  i < symbolContainer.length; i++) {
+                symbolContainer[i].classList.add("win");
+            }
 
             
+            setTimeout(function winMessage(){
+                deck.classList.add("hide");
+                var winMessage = document.querySelector(".win-message");
+                winMessage.classList.remove("hide");
+                var movesNumber = document.querySelector(".moves").textContent;
+                var movesMessage = document.querySelector(".moves-message");
+                movesMessage.textContent = movesNumber;
+                var gameTime = document.querySelector(".game-time");
+                gameTime.textContent = roundUserTime;
+                var playAgain = document.querySelector(".play-again");
+                playAgain.addEventListener("click", restartFunction, false); 
 
-      //      for (var i = 0;  i < symbolContainer.length; i++) {
-            //    symbolContainer[i].classList.remove("show");   
-            //    symbolContainer[i].classList.remove("match");   
-       //     }
-
-
-     //       setTimeout(function(){
-      //          winMessage.classList.add("hide");
-      //          restartFunction()
-
-      //      }, 4000)
-
+            }, 2000)
        };
 
 
@@ -170,9 +159,8 @@ document.addEventListener("DOMContentLoaded", function(){
                     console.log("you win");
                     var endTime = performance.now(); 
                     var userTime = endTime - startTime;
-                        userTime *= 10;
+
                     var roundUserTime = userTime.toFixed(2);
-                    console.log(userTime);    
                     
                     youWon(roundUserTime);
 
@@ -291,6 +279,17 @@ document.addEventListener("DOMContentLoaded", function(){
 // --------------------- Restart ----------------------------
 
     function restartFunction() {
+
+
+        // Removing win Message
+
+        var winMessage = document.querySelector(".win-message");
+        winMessage.classList.add("hide");
+
+        // Bring back Deck
+
+        var deckRemove = document.querySelector(".deck");
+        deckRemove.classList.remove("hide");
     
         // Reseting stars
 
@@ -300,7 +299,7 @@ document.addEventListener("DOMContentLoaded", function(){
             stars[i].classList.add("fa-star");
         };
 
-        // Reseting moves number
+        // Reseting move's number
 
         var movesNumber = document.querySelector(".moves");
             movesNumber.innerHTML = 0;
@@ -323,7 +322,6 @@ document.addEventListener("DOMContentLoaded", function(){
        
         setTimeout(function wait() {
 
-            var deckRemove = document.querySelector(".deck");
             deckRemove.innerHTML = "";
     
             start();      

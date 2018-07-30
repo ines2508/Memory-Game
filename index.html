@@ -14,6 +14,7 @@
 <body>
 
     <div class="container">
+
         <header>
             <h1>Memory Game</h1>
         </header>
@@ -24,7 +25,7 @@
         		<li><i class="fa fa-star"></i></li>
         		<li><i class="fa fa-star"></i></li>
         	</ul>
-        	<p class="move_panel"><span class="moves">0</span> Moves</p>
+        	<p class="move_panel"><span class="moves">0</span> <span class="moves-text">Moves</span></p>
             <div class="restart">
         		<i class="fa fa-repeat"></i>
         	</div>
@@ -55,9 +56,10 @@
         <section class="start-deck hide">
                 <p class="start-motto">Check how good is your memory!<br>
                     Find the hidden pairs.</p>
-                <i class="fas fa-user-graduate"></i>
-                <h2 class="start-button">Start the game!</h2>
-                <p class="start-motto-ein">Maybe you are the next Einstein?!</p>
+                <div class="start-graduate">
+                    <i class="fas fa-user-graduate"></i>
+                    <h2 class="start-button">Start the game!</h2>
+                </div>
 
         </section>
 
@@ -70,8 +72,8 @@
                     <i class="fas fa-trophy"></i>
                     <p class="win-text">It took you:</p>
                     <ul class="score">
-                        <li><span class="moves-message"></span> moves</li>
-                        <li><span class="game-time"></span> seconds</li>
+                        <li><span class="moves-message"></span> Moves</li>
+                        <li><span class="game-time"></span> Seconds</li>
                     </ul>
                     <div class="button-container">
                         <h2 class="play-again">Play again</h2>
@@ -80,7 +82,8 @@
         </section>
     
      
-        
+        <p class="start-motto-ein">Maybe you are the next Einstein?! <i class="far fa-surprise"></i><i class="far fa-smile-wink"></i></p>
+    
     </div>
 
     <script src="js/app.js"></script>
