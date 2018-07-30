@@ -1354,7 +1354,7 @@ header {
 .score-panel {
   text-align: left;
   width: 100%;
-  margin: 4vh 0 5vh 0;
+  margin: 4vh 0 2vh 0;
   justify-content: space-between;
   padding:  0 5vw 0 5vw ;
 }
@@ -1406,28 +1406,7 @@ header {
     align-items: center;
 }
 
-.start-card {
-    animation: startDeck ease 1s;
-    animation-iteration-count: 1;
-    transform-origin: 50% 50%;
-    animation-fill-mode:forwards; /*when the spec is finished*/
-    -webkit-animation: startDeck ease 1s;
-    -webkit-animation-iteration-count: 1;
-    -webkit-transform-origin: 50% 50%;
-    -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/ 
-    -moz-animation: startDeck ease 1s;
-    -moz-animation-iteration-count: 1;
-    -moz-transform-origin: 50% 50%;
-    -moz-animation-fill-mode:forwards; /*FF 5+*/
-    -o-animation: startDeck ease 1s;
-    -o-animation-iteration-count: 1;
-    -o-transform-origin: 50% 50%;
-    -o-animation-fill-mode:forwards; /*Not implemented yet*/
-    -ms-animation: startDeck ease 1s;
-    -ms-animation-iteration-count: 1;
-    -ms-transform-origin: 50% 50%;
-    -ms-animation-fill-mode:forwards; /*IE 10+*/
-}
+
 
 .deck .card.open {
     transform: rotateY(0);
@@ -1482,20 +1461,20 @@ header {
     pointer-events: none;
 }
 
-.card.win {
-    animation: winAnimation linear 1s;
+.win {
+    animation: winAnimation linear 2s;
     animation-iteration-count: 1;
     transform-origin: 50% 50%;
-    -webkit-animation: winAnimation linear 1s;
+    -webkit-animation: winAnimation linear 2s;
     -webkit-animation-iteration-count: 1;
     -webkit-transform-origin: 50% 50%;
-    -moz-animation: winAnimation linear 1s;
+    -moz-animation: winAnimation linear 2s;
     -moz-animation-iteration-count: 1;
     -moz-transform-origin: 50% 50%;
-    -o-animation: winAnimation linear 1s;
+    -o-animation: winAnimation linear 2s;
     -o-animation-iteration-count: 1;
     -o-transform-origin: 50% 50%;
-    -ms-animation: winAnimation linear 1s;
+    -ms-animation: winAnimation linear 2s;
     -ms-animation-iteration-count: 1;
     -ms-transform-origin: 50% 50%;
 }
@@ -1549,41 +1528,31 @@ header {
 /* ------------------- Win message ---------------------- */
 
 .win-message {
-  position: fixed;
-  top: 28vh;
-  right: 0;
-  left: 0;
-  z-index: 1000;
-  width: 100vw;
-}
-
-.win-box {
+  height: 70vh;
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
+  text-align: center;
   font-size: 1em;
-  padding: 6vw 0 6vw 0;
+  padding: 1vh 0 0 0;
 }
+
 .win-title {
   width: 100%;
   text-align: center;
-  padding: 0 0 3vw 0;
-}
-.fa-trophy {
-  font-size: 20vw;
-  justify-content: center;
-  text-align: center;
-  width: 100%;
-  padding: 2vh 0 2vh 0;
 }
 .win-text {
-  margin: 0 0 0 -15vw;
+  text-align: right;
+  width: 40%;
+  padding: 0 5vw 0 0;
 }
+
 .score {
   text-align: left;
-  margin: 0 0 0 5vw;
   list-style-type: none;
-  line-height: 150%;
+  line-height: 180%;
+  width: 40%;
 }
 .moves-message,
 .game-time {
@@ -1594,9 +1563,14 @@ header {
 .button-container {
   width: 100%;
   justify-content: center;
-  padding: 3vw 0 0 0;
 }
 
+.fa-trophy {
+  font-size: 30vw;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
 
 .hide {
   display: none;

@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function(){
 // Creat new Deck of Cards    
 
         var deck = document.querySelector(".deck");
-        deck.classList.add("start-card");
+            deck.classList.add("start-card");
         var fragment = document.createDocumentFragment();
 
         function createDeck(list) {
@@ -104,13 +104,13 @@ document.addEventListener("DOMContentLoaded", function(){
                 star1.classList.add("fa-star");
                 star2.classList.remove("fa-star");
 
-            } else if (difference >=33) {
+            } else if (difference === 33) {
                 star1.classList.remove("fa-star");
-            }
+            } else {console.log(undefined)}
         }
 
 
-        function countMoves(list) {
+        function countMoves(list, start) {
 
             var movesText = document.querySelector(".moves-text");
             var count = (list.length % 2 === 0) ? (list.length / 2) : ((list.length / 2) - 0.5);
@@ -118,6 +118,7 @@ document.addEventListener("DOMContentLoaded", function(){
             movesNumber.innerHTML = count;  
 
             movesText.textContent = (count === 1) ? "Move" : "Moves";
+
         }
 
 // ---------------------- Cards checker --------------------------
@@ -127,12 +128,16 @@ document.addEventListener("DOMContentLoaded", function(){
 
         function youWon(roundUserTime) {
 
+            var symbolContainer = document.querySelectorAll(".card");
+
             for (var i = 0;  i < symbolContainer.length; i++) {
+                symbolContainer[i].classList.remove("match");
                 symbolContainer[i].classList.add("win");
+                console.log(symbolContainer[i]);
             }
 
             
-            setTimeout(function winMessage(){
+            setTimeout(function winMessage() {
                 deck.classList.add("hide");
                 var winMessage = document.querySelector(".win-message");
                 winMessage.classList.remove("hide");
@@ -144,22 +149,21 @@ document.addEventListener("DOMContentLoaded", function(){
                 var playAgain = document.querySelector(".play-again");
                 playAgain.addEventListener("click", restartFunction, false); 
 
-            }, 2000)
+            }, 2050);
        };
 
 
 // Check win list
 
-        function checkWinList(startTime) {
+        function checkWinList(timeZero) {
             
             var userList = document.querySelectorAll(".match");
 
                 if (userList.length === 16) {
 
-                    console.log("you win");
                     var endTime = performance.now(); 
-                    var userTime = endTime - startTime;
-
+                    var userTime = endTime - timeZero;
+                    userTime = userTime / 1000;
                     var roundUserTime = userTime.toFixed(2);
                     
                     youWon(roundUserTime);
@@ -189,6 +193,9 @@ document.addEventListener("DOMContentLoaded", function(){
                     card1.classList.remove("open");
                     card2.classList.add("match");
                     card1.classList.add("match");
+                    card1.classList.add("disable-click");
+                    card2.classList.add("disable-click");
+
 
                     openCardList = [];
 
@@ -218,10 +225,13 @@ document.addEventListener("DOMContentLoaded", function(){
                     function ableClick(){
 
                         for (var i = 0; i < symbolContainer.length; i++){
-                            symbolContainer[i].classList.remove("disable-click");
+                            
+                            if (!symbolContainer[i].classList.contains("match")){
+                                symbolContainer[i].classList.remove("disable-click");
+                            } else {console.log(undefined)}
                         
                         }   
-                }, 1000)
+                }, 1010)
 
             } else  {console.log(undefined)};
         };
@@ -251,6 +261,7 @@ document.addEventListener("DOMContentLoaded", function(){
 // Add eventListener to the cards, giving them "open" class
 // Setting start time of the game    
 
+var timeTable = [];
 
         function clickCard(){
 
@@ -261,11 +272,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
                     var thisCard = this;
                     this.classList.add("open", "show");
-                    var startTime = performance.now();        
 
-                    progressMeasure(startTime);
+                    var startTime = performance.now();  
+                    timeTable.push(startTime);
+                    var timeZero = timeTable[0];
+                    console.log(timeZero);       
+
+                    progressMeasure(timeZero);
                     checkCards(thisCard);
-                    checkWinList(startTime);
+                    checkWinList(timeZero);
 
                 }, false);
             }
@@ -286,7 +301,7 @@ document.addEventListener("DOMContentLoaded", function(){
         var winMessage = document.querySelector(".win-message");
         winMessage.classList.add("hide");
 
-        // Bring back Deck
+        // Bring back Deck TODO - osobno dla play again (bez tego)
 
         var deckRemove = document.querySelector(".deck");
         deckRemove.classList.remove("hide");
@@ -304,7 +319,7 @@ document.addEventListener("DOMContentLoaded", function(){
         var movesNumber = document.querySelector(".moves");
             movesNumber.innerHTML = 0;
 
-        // Adding restar animation for cards
+        // Adding restart animation for cards
 
         var symbolContainer = document.querySelectorAll(".card");
 
@@ -326,7 +341,7 @@ document.addEventListener("DOMContentLoaded", function(){
     
             start();      
 
-        }, 750)
+        }, 1100)
     };
 
     resetButton.addEventListener("click", restartFunction, false);
@@ -345,12 +360,13 @@ document.addEventListener("DOMContentLoaded", function(){
             startDeck.classList.add("hide");
             var deckRemove = document.querySelector(".deck");
             deckRemove.classList.remove("hide");
+            deckRemove.classList.remove("win");
             deckRemove.innerHTML = "";                
             var scorePanel = document.querySelector(".score-panel");
             scorePanel.classList.remove("hide");
         
             start();          
-        }, 800);
+        }, 1000);
     }
     
     startButton.addEventListener("click", startGame, false);    
