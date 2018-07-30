@@ -115,24 +115,23 @@ document.addEventListener("DOMContentLoaded", function(){
 
             var count = (list.length % 2 === 0) ? (list.length / 2) : ((list.length / 2) - 0.5)
 
-            movesNumber.innerHTML = count;                
+            movesNumber.innerHTML = count;  
         }
-
 
 // ---------------------- Cards checker --------------------------
 
 
 // Animations for you won
 
-        function youWon() {
+        function youWon(roundUserTime) {
 
             var winMessage = document.querySelector(".win-message");
             winMessage.classList.remove("hide");
-            var movesNumber = document.querySelector(".moves");
+            var movesNumber = document.querySelector(".moves").textContent;
             var movesMessage = document.querySelector(".moves-message");
-            movesMessage.innerHTML = movesNumber;
+            movesMessage.textContent = movesNumber;
             var gameTime = document.querySelector(".game-time");
-            gameTime.appendChild(roundUserTime);
+            gameTime.textContent = roundUserTime;
 
             
 
@@ -144,12 +143,11 @@ document.addEventListener("DOMContentLoaded", function(){
             }
 
 
-
             setTimeout(function(){
                 winMessage.classList.add("hide");
                 restartFunction()
 
-            }, 1500)
+            }, 4000)
 
        };
 
@@ -166,10 +164,10 @@ document.addEventListener("DOMContentLoaded", function(){
                     var endTime = performance.now(); 
                     var userTime = endTime - startTime;
                      //   userTime *= 10;
-                    var roundUserTime = Math.round(userTime);
+                    var roundUserTime = userTime.toFixed(2);
                     console.log(userTime);    
                     
-                    youWon();
+                    youWon(roundUserTime);
 
                 } else {console.log(undefined)}
         };
@@ -214,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function(){
                             card1.classList.remove("show");        
                             card2.classList.remove("wrong");
                             card1.classList.remove("wrong");
-                    },1180)
+                    },1000)
                         
                     openCardList = [];
                 }
@@ -228,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function(){
                             symbolContainer[i].classList.remove("disable-click");
                         
                         }   
-                }, 1180)
+                }, 1000)
 
             } else  {console.log(undefined)};
         };
@@ -339,7 +337,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
         setTimeout(function moveDeck() {
             var deckRemove = document.querySelector(".deck");
-            deckRemove.innerHTML = "";                var scorePanel = document.querySelector(".score-panel");
+            deckRemove.innerHTML = "";                
+            var scorePanel = document.querySelector(".score-panel");
             scorePanel.classList.remove("hide");
         
             start();          
