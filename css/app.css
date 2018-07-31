@@ -1614,22 +1614,23 @@ header {
 /* Welcome screen */
 
     .start-deck {
-        height: 70vh;
+        height: 58vh;
         width: 100%;
         justify-content: center;
-        align-items: center;
+        align-items: flex-end;
     }
 
     .motto-box {
-        width: 45%;
+        width: 40%;
+        text-align: right;
     }
 
     .start-motto {
-        width: 80%;
+        width: 95%;
     }
 
     .start-graduate {
-        width: 43%;
+        width: 45%;
     }
 
     .fa-user-graduate {
@@ -1861,7 +1862,7 @@ header {
 
 } 
 
-@media (min-width: 1023px) and (orientation: portrait) {
+@media (min-width: 1024px) and (orientation: portrait) {
 
 /* Start animation */
 
@@ -1906,6 +1907,13 @@ header {
         padding: 1em 0.5em 1em 0.5em;
         font-size: 5em;
     }
+/* Footer */ 
+  
+    .start-motto-ein {
+        padding: 1vw 0 1vw 0; 
+    }
+
+
 }  
 
 
@@ -1941,47 +1949,80 @@ header {
     }
   
     .start-title {
-        font-size: 4em;
+        font-size: 6em;
+        padding: 0.5em;
     }
   
 /* Wilcome panel */
 
     .start-deck {
         width: 1020px;
+        height: 80vh;
         margin-left: auto;
         margin-right: auto;
+        align-items: center;
+    }
+    
+    .motto-box {
+        width: 100%;
     }
     
     .start-motto {
-        font-size: 2.6em;
+        font-size: 2em;
+        margin: 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    .start-graduate {
+        width: 50%;
+    }
+    .fa-user-graduate {
+      font-size: 22vh;
     }
   
     .start-button {
         font-size: 3em;
-        padding: 1.6em 0.5em 1.6em 0.5em;
+        padding: 6vh;
     }
 
 /* Win screen */
   
     .win-message {
         width: 1020px;
-      margin-left: auto;
-      margin-right: auto;
+        height: 80vh;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .win-title {
-        font-size: 3.4em;
+        font-size: 3.6em;
     }
 
     .win-text {
-        font-size: 2em;
+        font-size: 2.2em;
+    }
+
+    .fa-trophy {
+        font-size: 16em;
+    }
+
+    .score {
+      font-size: 2em;
     }
 
     .play-again {
         font-size: 3em;
         padding: 1em 0.5em;
     }
+
+/* Footer */ 
+  
+    .start-motto-ein {
+        padding: 1vw 0 1vw 0; 
+    }
 }  
+
 
   
 
