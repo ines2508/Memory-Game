@@ -1606,5 +1606,81 @@ header {
   display: none;
 }
 
+@media all and (min-width: 500px) {
 
+    /* Start animation */
+
+    .start-animation {
+      height: 100vh;
+      width: 100vw;
+    }
+    .symbol-box {
+      height: 85%;
+    }
+    .start-symbol {
+      font-size: 1em;
+    }
+
+    .start-title {
+      font-size: 2.2em;
+    }
+
+    /* Welcome screen */
+
+    .start-motto {
+      font-size: 1.4em;
+    }
+}
+
+  @media (min-width: 500px) and (max-width:850px) and (orientation: landscape){ 
+
+  /* Welcome screen */
+
+  .start-deck {
+    height: 70vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .motto-box {
+    width: 45%;
+  }
+  
+  .start-motto {
+    width: 80%;
+  }
+
+  .start-graduate {
+    width: 43%;
+  }
+
+  .fa-user-graduate {
+    font-size: 6em;
+  }
+
+  .start-button {
+    font-size: 1.8em;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+  }
+
+/* Win screen */
+
+  .win-title {
+    font-size: 2.8em;
+  }
+  .win-text {
+    text-align: right;
+    width: 20%;
+  }
+  .score {
+    width: 30%;
+  }
+  .button-container {
+    width: 40%;
+  }
+  .fa-trophy {
+    font-size: 30vw;
+  }
+}
 
