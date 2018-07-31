@@ -1614,7 +1614,7 @@ header {
 /* Welcome screen */
 
     .start-deck {
-        height: 58vh;
+        height: 63vh;
         width: 100%;
         justify-content: center;
         align-items: flex-end;
@@ -1622,7 +1622,8 @@ header {
 
     .motto-box {
         width: 40%;
-        text-align: right;
+        text-align: left;
+        order: 10;
     }
 
     .start-motto {
@@ -1630,11 +1631,13 @@ header {
     }
 
     .start-graduate {
-        width: 45%;
+        width: 52%;
+        order: 5;
+        margin: 0 0 2vh 0;
     }
 
     .fa-user-graduate {
-        font-size: 6em;
+        font-size: 30vh;
     }
 
     .start-button {
@@ -1712,11 +1715,15 @@ header {
     }
 
     .fa-trophy {
-        font-size: 6em;
+        font-size: 33vh;
     }
 
     .play-again {
         padding: 0.5em;
+    }
+
+    .start-motto-ein {
+        padding: 2vh 0 2vh 0;
     }
 }  
 
@@ -1965,6 +1972,7 @@ header {
     
     .motto-box {
         width: 100%;
+        order: 5;
     }
     
     .start-motto {
@@ -1976,6 +1984,7 @@ header {
 
     .start-graduate {
         width: 50%;
+        order: 10;
     }
     .fa-user-graduate {
       font-size: 22vh;

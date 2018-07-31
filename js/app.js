@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     var resetButton = document.querySelector(".restart");
     var startButton = document.querySelector(".start-button");
+    var  deck = document.querySelector(".deck");
 
 // ----------------------After Start Animation --------------------------------
 
@@ -54,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
 // Creat new Deck of Cards    
 
-        var deck = document.querySelector(".deck");
         deck.classList.remove("hide");
         deck.classList.add("start-card");
 
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function(){
         function countMoves(list, start) {
 
             var movesText = document.querySelector(".moves-text");
-            var count = (list.length % 2 === 0) ? (list.length / 2) : ((list.length / 2) - 0.5);
+            var count = Math.floor(list.length / 2);
 
             movesNumber.innerHTML = count;  
 
@@ -328,8 +328,7 @@ function playAgainFunction() {
 
         winMessage.classList.add("hide");
 
-        var deckRemove = document.querySelector(".deck");
-        deckRemove.innerHTML = "";
+        deck.innerHTML = "";
 
         start();      
 
@@ -352,8 +351,7 @@ playAgain.addEventListener("click", playAgainFunction, false);
 
         // Bring back Deck 
 
-        var deckRemove = document.querySelector(".deck");
-        deckRemove.classList.remove("hide");
+        deck.classList.remove("hide");
     
         // Reseting stars
 
@@ -386,7 +384,7 @@ playAgain.addEventListener("click", playAgainFunction, false);
        
         setTimeout(function wait() {
 
-            deckRemove.innerHTML = "";
+            deck.innerHTML = "";
     
             start();      
 
@@ -407,10 +405,9 @@ playAgain.addEventListener("click", playAgainFunction, false);
 
         setTimeout(function moveDeck() {
             startDeck.classList.add("hide");
-            var deckRemove = document.querySelector(".deck");
-            deckRemove.classList.remove("hide");
-            deckRemove.classList.remove("win");
-            deckRemove.innerHTML = "";                
+            deck.classList.remove("hide");
+            deck.classList.remove("win");
+            deck.innerHTML = "";                
             var scorePanel = document.querySelector(".score-panel");
             scorePanel.classList.remove("hide");
         
