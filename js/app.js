@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function(){
                             card1.classList.remove("show");        
                             card2.classList.remove("wrong");
                             card1.classList.remove("wrong");
-                    },1000)
+                    },900)
                         
                 }
 
@@ -235,7 +235,7 @@ document.addEventListener("DOMContentLoaded", function(){
                             symbolContainer[i].classList.remove("disable-click");
                         
                         }   
-                }, 1000)
+                }, 900)
 
             } else  {console.log(undefined)};
         };
@@ -306,7 +306,7 @@ function playAgainFunction() {
     // Removing win Message
 
     var winMessage = document.querySelector(".win-message");
-    winMessage.classList.add("hide");
+    winMessage.classList.add("reset-card");
 
     // Reseting stars
 
@@ -325,6 +325,8 @@ function playAgainFunction() {
     // Waiting till restart animation will end
    
     setTimeout(function wait() {
+
+        winMessage.classList.add("hide");
 
         var deckRemove = document.querySelector(".deck");
         deckRemove.innerHTML = "";
