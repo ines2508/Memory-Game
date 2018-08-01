@@ -1555,13 +1555,14 @@ header {
 .win-title {
     width: 100%;
     text-align: center;
-    font-size: 1.8em;
+    font-size: 5vh;
+    padding: 0 0 2vh 0;
 }
 
 .win-text {
-    text-align: right;
+    text-align: left;
     width: 40%;
-    padding: 0 5vw 0 0;
+    padding: 0 3vh 0 0;
 }
 
 .score-box {
@@ -1577,7 +1578,8 @@ header {
 }
 
 .moves-message,
-.game-time {
+.game-time,
+.star-number {
     font-size: 150%;
     font-weight: 700;
 }
@@ -1686,28 +1688,31 @@ header {
 /* Win screen */
   
     .win-message {
-        justify-content: flex-start;
+        justify-content: center;
         height: 70vh;
     }
 
     .win-title {
         width: 100%;
+        text-align: left;
     }
 
     .win-text {
-        text-align: right;
-        width: 40%;
+        text-align: left;
+        width: 50%;
     }
 
     .score-box {
-        width: 60%;
+        width: 52%;
         display: flex;
         min-height: 45vh;
-        justify-content: flex-end;
+        justify-content: flex-start;
+        padding: 0 0 0 5vw;
     }
 
     .score {
         width: 50%;
+        font-size: 4vh;
     }
 
     .button-container {
@@ -1794,7 +1799,8 @@ header {
   /* Win screen */
   
     .win-title {
-       font-size: 2em;
+       font-size: 9vh;
+       text-align: left;
     }
   
     .win-text {
@@ -1817,7 +1823,7 @@ header {
     }
 
 
-/* Wilcome screen */
+/* Welcome screen */
 
     .start-motto {
        font-size: 2em;
@@ -1825,6 +1831,21 @@ header {
 
     .start-button {
       font-size: 4em;
+    }
+    
+/* Win screnn */
+
+    .win-title {
+        font-size: 6vh;
+    }
+
+    .win-text {
+      text-align: right;
+      font-size: 4vh;
+    }
+
+    .score {
+        font-size: 3vh;
     }
 
 }
@@ -1859,7 +1880,7 @@ header {
     }
 
     .win-text {
-        font-size: 1.8em;
+        font-size: 5vh;
     }
 
     .play-again {
@@ -1895,7 +1916,7 @@ header {
 /* Win screen */
 
     .win-message {
-        height: 75vh;
+        height: 80vh;
     }
 
     .win-title {
@@ -1908,6 +1929,10 @@ header {
 
     .fa-trophy {
         font-size: 16em;
+    }
+
+    .score {
+      font-size: 2vh;
     }
 
     .play-again {
@@ -1946,7 +1971,7 @@ header {
     .move-panel {
         color: black;
         top: 0;
-      left: 0;
+        left: 0;
     }
   
 /* Start animation */
@@ -2002,14 +2027,19 @@ header {
         height: 80vh;
         margin-left: auto;
         margin-right: auto;
+        justify-content: space-around;
+    }
+
+    .score-box {
+        width: 50%;
     }
 
     .win-title {
-        font-size: 3.6em;
+        font-size: 6vh;
     }
 
     .win-text {
-        font-size: 2.2em;
+        font-size: 5vh;
     }
 
     .fa-trophy {
@@ -2017,7 +2047,7 @@ header {
     }
 
     .score {
-      font-size: 2em;
+      font-size: 3vh;
     }
 
     .play-again {
@@ -2032,7 +2062,16 @@ header {
     }
 }  
 
+@media (min-width: 1336px) and (orientation: landscape) {
 
+/* Win screen */
+
+    .win-title {
+        font-size: 5vh;
+    }
+    .score-box {
+        padding: 0;
+    }
   
 
-
+}

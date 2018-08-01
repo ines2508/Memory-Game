@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     var resetButton = document.querySelector(".restart");
     var startButton = document.querySelector(".start-button");
-    var  deck = document.querySelector(".deck");
+    var deck = document.querySelector(".deck");
 
 // ----------------------After Start Animation --------------------------------
 
@@ -20,9 +20,7 @@ document.addEventListener("DOMContentLoaded", function(){
         
     
     }, 3000);
-        
 
-    
 
 // ---------------------- Cards shuffler -----------------------------
 
@@ -83,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function(){
         var symbolContainer = document.querySelectorAll(".card");
    
 // ---------------------- Panel ---------------------------------
-        
+
         var movesNumber = document.querySelector(".moves");
         var userList = document.querySelectorAll(".match");
 
@@ -136,15 +134,14 @@ document.addEventListener("DOMContentLoaded", function(){
 
         function youWon(roundUserTime) {
 
-            var symbolContainer = document.querySelectorAll(".card");
-
             for (var i = 0;  i < symbolContainer.length; i++) {
                 symbolContainer[i].classList.remove("match");
                 symbolContainer[i].classList.add("win");
                 console.log(symbolContainer[i]);
             }
 
-            
+            // Setting up Win screen
+
             setTimeout(function winMessage() {
                 deck.classList.add("hide");
                 var winMessage = document.querySelector(".win-message");
@@ -154,10 +151,16 @@ document.addEventListener("DOMContentLoaded", function(){
                 movesMessage.textContent = movesNumber;
                 var gameTime = document.querySelector(".game-time");
                 gameTime.textContent = roundUserTime;
+                var stars = document.querySelectorAll(".stars .fa-star");
+                var starMessage = document.querySelector(".star-number");
+                starMessage.textContent =  stars.length;
+                var starPlural = document.querySelector(".star-plural");
+                starPlural.textContent = (start.length == 1) ? "Star" : "Stars";
                 var scorePanel = document.querySelector(".score-panel");
                 scorePanel.classList.add("hide");
 
             }, 2000);
+            
        };
 
 
@@ -175,9 +178,12 @@ document.addEventListener("DOMContentLoaded", function(){
                     var roundUserTime = userTime.toFixed(2);
                     
                     youWon(roundUserTime);
+                    startTime = endTime;
+                    timer(startTime);
 
                 } else {console.log(undefined)}
         };
+
 
 // Disable click - to prevent from clicking when two cards are open
 
@@ -191,6 +197,7 @@ document.addEventListener("DOMContentLoaded", function(){
 // Two cards open
 
         function checkOpenList(openList, card1, card2) {
+    
 
             if (openList.length === 2) {
 
@@ -213,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
                     openCardList = [];
     
-                // Needed time to remember the cards
+                    // Needed time to remember the cards
 
                     setTimeout(
                         function removeWrong(){
@@ -265,32 +272,55 @@ document.addEventListener("DOMContentLoaded", function(){
 // Add eventListener to the cards, giving them "open" class
 // Setting start time of the game    
 
+        function afterClicking() {
+
+            var thisCard = this;
+
+                    this.classList.add("open", "show");
+                    
+                    var startTime = performance.now();  
+                    timeTable.push(startTime);
+                    var timeZero = timeTable[0];
+
+                    timer();
+                    progressMeasure(startTime);
+                    checkCards(thisCard);
+                    checkWinList(timeZero);
+
+        }
+
+
 var timeTable = [];
+
 
         function clickCard(){
 
             for (var i = 0; i < 500; i++) { 
                 var oneCard = symbolContainer[i];
                 
-                oneCard.addEventListener("click", function(){
+                oneCard.addEventListener("click", afterClicking
+                
+          //      function(){
 
-                    var thisCard = this;
-                    this.classList.add("open", "show");
+           //         var thisCard = this;
+           //         this.classList.add("open", "show");
+                    
 
-                    var startTime = performance.now();  
-                    timeTable.push(startTime);
-                    var timeZero = timeTable[0];
-                    console.log(timeZero);       
+            //        var startTime = performance.now();  
+            //        timeTable.push(startTime);
+            //        var timeZero = timeTable[0];
 
-                    progressMeasure(timeZero);
-                    checkCards(thisCard);
-                    checkWinList(timeZero);
+            //        timer();
+            //        progressMeasure(startTime);
+            //        checkCards(thisCard);
+            //        checkWinList(timeZero);
 
-                }, false);
+           //     }
+                
+                , false);
             }
+
         };
-
-
         clickCard();
     };
 
@@ -298,51 +328,56 @@ var timeTable = [];
 
 // --------------------- Play Again ----------------------------
 
-var playAgain = document.querySelector(".play-again");
-
-function playAgainFunction() {
+    var startClock = performance.now();
 
 
-    // Removing win Message
+    var playAgain = document.querySelector(".play-again");
 
-    var winMessage = document.querySelector(".win-message");
-    winMessage.classList.add("reset-card");
+    function playAgainFunction() {
 
-    // Reseting stars
+        // Removing win Message
 
-    var stars = document.querySelectorAll(".stars i");    
-        
-    for (var i = 0; i < stars.length; i++){
-        stars[i].classList.add("fa-star");
+        var winMessage = document.querySelector(".win-message");
+        winMessage.classList.add("reset-card");
+
+        // Reseting stars
+
+        var stars = document.querySelectorAll(".stars i");    
+            
+        for (var i = 0; i < stars.length; i++){
+            stars[i].classList.add("fa-star");
+        };
+
+        // Reseting move's number
+
+        var movesNumber = document.querySelector(".moves");
+            movesNumber.innerHTML = 0;
+
+
+        // Waiting till restart animation will end
+    
+        setTimeout(function wait() {
+
+            winMessage.classList.add("hide");
+
+            deck.innerHTML = "";
+
+            start();      
+
+        }, 1000)
     };
 
-    // Reseting move's number
 
-    var movesNumber = document.querySelector(".moves");
-        movesNumber.innerHTML = 0;
-
-
-    // Waiting till restart animation will end
-   
-    setTimeout(function wait() {
-
-        winMessage.classList.add("hide");
-
-        deck.innerHTML = "";
-
-        start();      
-
-    }, 1000)
-};
-
-
-playAgain.addEventListener("click", playAgainFunction, false);
+    playAgain.addEventListener("click", playAgainFunction, false);
 
 
 // --------------------- Restart ----------------------------
 
     function restartFunction() {
 
+        startClock = performance.now(); 
+
+        timer(startClock);
 
         // Removing win Message
 
@@ -411,13 +446,58 @@ playAgain.addEventListener("click", playAgainFunction, false);
             var scorePanel = document.querySelector(".score-panel");
             scorePanel.classList.remove("hide");
         
-            start();          
+            start();            
+
         }, 1000);
     }
     
     startButton.addEventListener("click", startGame, false);    
 
 });
+
+
+
+
+function timer(startClock) {
+
+    var startClock = performance.now();
+    var clock = document.querySelector(".time-score");
+
+    var actualDate = new Date();
+    var milisecunds = actualDate.getMilliseconds();
+
+    var timeDifference = milisecunds - startClock;
+    var timeInSeconds = (timeDifference * -1) / 1000;
+
+    var showMinutes = Math.floor(timeInSeconds / 60);
+    var showLeftSecond = timeInSeconds - (showMinutes * 60);
+    var roundSeconds = showLeftSecond.toFixed(0);
+
+    // Show with "0" when less then 10
+
+    if (showMinutes < 10) {
+        showMinutes = "0" + showMinutes;
+    } else {showMinutes};
+
+    if (roundSeconds < 10) {
+        roundSeconds = "0" + roundSeconds;
+    } else {roundSeconds};
+
+
+    clock.textContent = `${showMinutes} : ${roundSeconds}`;
+    clock.innerText = `${showMinutes} : ${roundSeconds}`;
+
+    
+    setTimeout("timer()", 1000);
+
+};
+
+
+
+
+
+
+
 
 
 
