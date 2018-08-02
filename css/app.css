@@ -1520,7 +1520,7 @@ header {
     pointer-events: none;
 }
 
-.win {
+.win-animation {
     animation: winAnimation linear 2s;
     animation-iteration-count: 1;
     transform-origin: 50% 50%;
@@ -1538,7 +1538,7 @@ header {
     -ms-transform-origin: 50% 50%;
 }
 
-.reset-card {
+.reset-animation {
     animation: resetCard ease 1s;
     animation-iteration-count: 1;
     transform-origin: 50% 50%;
@@ -1680,7 +1680,7 @@ header {
     width: 100%;
 }
 
-.play-again {
+.play-again-button {
     background: #cccccc;
     background: url(../img/light_grey.png); 
     border-radius: 2vw;
@@ -1689,7 +1689,7 @@ header {
     font-size: 1.8em;
     cursor: pointer;
 }
-.play-again:hover {
+.play-again-button:hover {
   background: #dcdce0;
   background: url(../img/grey04.png);
 }
@@ -1798,11 +1798,11 @@ header {
 /* Deck */
 
     .deck {
-        margin: 5vw 0 0 0;
+        margin: 10vh 0 0 0;
         width: 95vw;
-        min-height: 60vh;
-        height: 60vh;
-        align-items: flex-start;
+        min-height: 50vh;
+        height: 50vh;
+        align-items: flex-end;
     }
 
     .deck .card {
@@ -1888,7 +1888,7 @@ header {
         font-size: 33vh;
     }
 
-    .play-again {
+    .play-again-button {
         padding: 0.5em;
     }
 
@@ -2038,6 +2038,13 @@ header {
         padding: 0.5em 0.5em 0.5em 0.5em;
     }
 
+/* Deck */
+
+.deck {
+  min-height: 50vh;
+  height: 50vh;
+}
+
 /* Win screen */
 
     .win-title {
@@ -2048,7 +2055,7 @@ header {
         font-size: 5vh;
     }
 
-    .play-again {
+    .play-again-button {
         font-size: 2em;
         padding: 1em 0.5em;
     }
@@ -2100,7 +2107,7 @@ header {
       font-size: 2vh;
     }
 
-    .play-again {
+    .play-again-button {
         padding: 1em 0.5em 1em 0.5em;
         font-size: 5em;
     }
@@ -2158,6 +2165,11 @@ header {
     }
   
 /* Wilcome panel */
+
+    .deck {
+      min-height: 50vh;
+      height: 50vh;
+    }
 
     .start-deck {
         width: 1020px;
@@ -2222,7 +2234,7 @@ header {
       font-size: 3vh;
     }
 
-    .play-again {
+    .play-again-button {
         font-size: 3em;
         padding: 1em 0.5em;
     }
@@ -2235,6 +2247,13 @@ header {
 }  
 
 @media (min-width: 1336px) and (orientation: landscape) {
+
+/* Deck */
+
+    .deck {
+      min-height: 53vh;
+      height: 53vh; 
+    }
 
 /* Win screen */
 

@@ -1,15 +1,11 @@
-
-    
     var allCards = ["fa-diamond", "fa-anchor", "fa-bomb", "fa-paper-plane-o", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle", "fa-diamond",   "fa-bolt", "fa-bicycle", "fa-leaf", "fa-paper-plane-o", "fa-bomb","fa-cube"];
-
     var resetButton = document.querySelector(".restart");
     var startButton = document.querySelector(".start-button");
-    var playAgain = document.querySelector(".play-again");
+    var playAgain = document.querySelector(".play-again-button");
     var deck = document.querySelector(".deck");
     var clock = document.querySelector(".time-score");
     var clockPanel = document.querySelector(".clock-panel");
     
-
 
 // ----------------------After Start Animation --------------------------------
 
@@ -22,23 +18,21 @@
 
         var startAnimation = document.querySelector(".start-animation");
         startAnimation.classList.add("hide");
-        
-    
+
     }, 3000);
 
 
-    // ------------------- Start ----------------------------
+    // ------------- Prepering deck screen -------------------------
 
         function startGame() {
 
-
             var startDeck = document.querySelector(".start-deck");
-            startDeck.classList.add("reset-card");
+            startDeck.classList.add("reset-animation");
     
             setTimeout(function moveDeck() {
                 startDeck.classList.add("hide");
                 deck.classList.remove("hide");
-                deck.classList.remove("win");
+                deck.classList.remove("win-animation");
                 deck.innerHTML = "";                
                 var scorePanel = document.querySelector(".score-panel");
                 scorePanel.classList.remove("hide");
@@ -50,6 +44,7 @@
         
         startButton.addEventListener("click", startGame, false); 
 
+// ---------------------- Start function -----------------------------        
 
 // ---------------------- Cards shuffler -----------------------------
 
@@ -73,6 +68,7 @@
         shuffle(allCards);
         
         var newList = shuffle(allCards);
+
 
 // Bringing back score panel
 
@@ -110,15 +106,30 @@
         createDeck(newList);
 
         var symbolContainer = document.querySelectorAll(".card");
+
    
-// ---------------------- Panel ---------------------------------
+// ---------------------- Score Panel ---------------------------------
 // Time counter is outside start function
 
 
-        //Add and remove stars
-
         var movesNumber = document.querySelector(".moves");
         var userList = document.querySelectorAll(".match");
+
+         
+// Counts the number of moves based on lenght
+// of the all shown symbols (cards);
+
+        function countMoves(list) {
+
+            // Odd numbers are rounded down
+
+            var count = Math.floor(list.length / 2);
+
+            movesNumber.innerHTML = count;  
+
+        }
+
+//Add and remove stars
 
         function progressMeasure() {
 
@@ -154,67 +165,13 @@
             } else {console.log(undefined)}
         }
 
-        
-        // Counts the number of moves based on lenght
-        // of the all shown symbols (cards);
-
-        function countMoves(list, start) {
-
-        //    var movesText = document.querySelector(".moves-text");
-
-
-            // Odd numbers are rounded down
-
-            var count = Math.floor(list.length / 2);
-
-            movesNumber.innerHTML = count;  
-
-        }
+       
 
 // ---------------------- Cards checker --------------------------
 
-
-// Animations for you won
-
-        function youWon(keepNumber) {
-
-            // Setting up Win screen
-
-            setTimeout(function winMessage() {
-
-                deck.classList.add("hide");
-                var winMessage = document.querySelector(".win-message");
-                winMessage.classList.remove("hide");
-
-                // Show number of moves
-
-                var movesNumber = document.querySelector(".moves").textContent;
-                var movesMessage = document.querySelector(".moves-message");
-                movesMessage.textContent = movesNumber;
-
-                // Show game time
-                var gameTime = document.querySelector(".game-time");
-                gameTime.textContent = keepNumber;
-
-                // Show stars number
-                
-                var stars = document.querySelectorAll(".stars .fa-star");
-                var starMessage = document.querySelector(".star-number");
-                starMessage.textContent =  stars.length;
-
-                var scorePanel = document.querySelector(".score-panel");
-                scorePanel.classList.add("hide");
-           //     var timeScore = document.querySelector(".time-score");
-            //    timeScore.disable = true;
-
-            }, 1980); // Waiting till win card animation finish
-            
-       };
-
-
 // Win list is based on match lenght array
 
-        function checkWinList(timeZero) {
+        function checkWinList() {
             
             var userList = document.querySelectorAll(".match");
 
@@ -230,10 +187,39 @@
 
                     for (var i = 0;  i < symbolContainer.length; i++) {
                         symbolContainer[i].classList.remove("match");
-                        symbolContainer[i].classList.add("win");
-                    }        
+                        symbolContainer[i].classList.add("win-animation");
+                    }
                     
-                    youWon(keepNumber);
+                     // Setting up Win screen
+
+                    setTimeout(function winMessage() {
+
+                        deck.classList.add("hide");
+                        var winMessage = document.querySelector(".win-message");
+                        winMessage.classList.remove("hide");
+
+                        // Show number of moves
+
+                        var movesNumber = document.querySelector(".moves").textContent;
+                        var movesMessage = document.querySelector(".moves-message");
+                        movesMessage.textContent = movesNumber;
+
+                        // Show game time
+                        var gameTime = document.querySelector(".game-time");
+                        gameTime.textContent = keepNumber;
+
+                        // Show stars number
+                        
+                        var stars = document.querySelectorAll(".stars .fa-star");
+                        var starMessage = document.querySelector(".star-number");
+                        starMessage.textContent =  stars.length;
+
+                        var scorePanel = document.querySelector(".score-panel");
+                        scorePanel.classList.add("hide");
+                //     var timeScore = document.querySelector(".time-score");
+                    //    timeScore.disable = true;
+
+                    }, 1980); // Waiting till win card animation finish
 
                 } else {console.log(undefined)}
         };
@@ -328,8 +314,6 @@
 
             countList.push(symbol);
             countMoves(countList);
-
-
         };
 
 
@@ -337,7 +321,6 @@
 // giving them "open" and "show" class
 // Start checking if cards match 
 // and if all cards are collected
-
 
         function afterClicking() {
 
@@ -350,28 +333,28 @@
             checkWinList();                   
         };
 
-
         function clickCard(){
 
-            for (var i = 0; i < 500; i++) { 
+            for (var i = 0; i < symbolContainer.length; i++) { 
                 var oneCard = symbolContainer[i];
                 
                 oneCard.addEventListener("click", afterClicking, false);
 
             }
         };
-
         clickCard();
+    };
 
-    }; // end of start() function
+// ------------------ End of start() function -----------------    
 
 
 // ---------------------- Counter ------------------------------  
 // Must be outside of start()  
 
-var number0 = 0;
 
-function counter() {
+    var number0 = 0;
+
+    function counter() {
 
         // After first in deck EventListener is removed
 
@@ -404,7 +387,6 @@ function counter() {
 
         clock.textContent = `${minuts}:${seconds}`;
 
-
         // Reseting time
 
         function stop() {
@@ -413,7 +395,6 @@ function counter() {
             number0 = 0;
         }
 
-
         resetButton.addEventListener("click", stop, false);
         playAgain.addEventListener("click", stop, false);
 
@@ -421,12 +402,7 @@ function counter() {
             stop()
         } else {console.log(undefined)};
 
-    //    playAgain.removeEventListener("click", stop, false);
-
-
-
-
-}
+    }
 
     deck.addEventListener("click", counter, false);
 
@@ -439,7 +415,7 @@ function counter() {
         // Removing win Message
 
         var winMessage = document.querySelector(".win-message");
-        winMessage.classList.add("reset-card");
+        winMessage.classList.add("reset-animation");
 
         // Reseting stars
 
@@ -481,15 +457,6 @@ function counter() {
 
     function restartFunction() {
 
-        // Removing win Message
-
-        var winMessage = document.querySelector(".win-message");
-        winMessage.classList.add("hide");
-
-        // Bring back Deck 
-
-        deck.classList.remove("hide");
-    
         // Reseting stars
 
         var stars = document.querySelectorAll(".stars i");    
@@ -517,7 +484,7 @@ function counter() {
         (function animationReset(){
 
             for (var i = 0; i < symbolContainer.length; i++){
-                symbolContainer[i].classList.add("reset-card");
+                symbolContainer[i].classList.add("reset-animation");
                 symbolContainer[i].classList.remove("match");
                 symbolContainer[i].classList.remove("show");
             
