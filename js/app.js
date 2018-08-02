@@ -231,7 +231,6 @@
                     for (var i = 0;  i < symbolContainer.length; i++) {
                         symbolContainer[i].classList.remove("match");
                         symbolContainer[i].classList.add("win");
-                        console.log(symbolContainer[i]);
                     }        
                     
                     youWon(keepNumber);
@@ -405,6 +404,7 @@ function counter() {
 
         clock.textContent = `${minuts}:${seconds}`;
 
+
         // Reseting time
 
         function stop() {
@@ -413,8 +413,18 @@ function counter() {
             number0 = 0;
         }
 
+
         resetButton.addEventListener("click", stop, false);
         playAgain.addEventListener("click", stop, false);
+
+        if (clockPanel.classList.contains("hide")) {
+            stop();
+            lastCard.removeEventListener("click", stop, false);
+
+        } else {console.log(undefined)};
+
+        lastCard.addEventListener("click", stop, false);
+
 
 }
 
@@ -463,7 +473,6 @@ function counter() {
 
         }, 1000)
     };
-
 
     playAgain.addEventListener("click", playAgainFunction, false);
 
