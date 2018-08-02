@@ -11,7 +11,7 @@ Game consists of 4 screens:
   - match cards
   - win animation
   - reset animation
-4. Winner message with button play and rest animation
+4. Winner message with button play and reset animation
 
 ## Screen 1
 
@@ -59,9 +59,6 @@ There are 3 ways to clear this setTimeout:
 - clicking reset button
 - clicking play again button
 - and after the score panel is hide when all cards are matched.
-
-### Button Reset
-[Reset Button](###ResetButton)
 
 ### Deck of cards
 
