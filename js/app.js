@@ -1,10 +1,15 @@
-//document.addEventListener("DOMContentLoaded", function(){
+
     
     var allCards = ["fa-diamond", "fa-anchor", "fa-bomb", "fa-paper-plane-o", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle", "fa-diamond",   "fa-bolt", "fa-bicycle", "fa-leaf", "fa-paper-plane-o", "fa-bomb","fa-cube"];
 
     var resetButton = document.querySelector(".restart");
     var startButton = document.querySelector(".start-button");
+    var playAgain = document.querySelector(".play-again");
     var deck = document.querySelector(".deck");
+    var clock = document.querySelector(".time-score");
+    var clockPanel = document.querySelector(".clock-panel");
+    
+
 
 // ----------------------After Start Animation --------------------------------
 
@@ -22,58 +27,35 @@
     }, 3000);
 
 
-// ---------------------- Counter ------------------------------  
-// Must be outside of start()  
+    // ------------------- Start ----------------------------
 
-    var number0 = 1;
-    var clock = document.querySelector(".time-score");
+        function startGame() {
 
-    function counter() {
+
+            var startDeck = document.querySelector(".start-deck");
+            startDeck.classList.add("reset-card");
+    
+            setTimeout(function moveDeck() {
+                startDeck.classList.add("hide");
+                deck.classList.remove("hide");
+                deck.classList.remove("win");
+                deck.innerHTML = "";                
+                var scorePanel = document.querySelector(".score-panel");
+                scorePanel.classList.remove("hide");
             
-            setTimeout(function(){
-
-                number0 = number0 + 1;
-
-            }, 1000)
-
-            var clock2 = setTimeout("counter()", 1000);
-
-            var minuts = Math.floor(number0 / 60);
-            var seconds = number0 - (minuts * 60);
-
-            // Set up for display of time
-
-            if (minuts < 10) {
-                minuts = "0" + minuts;
-            } else {minuts};
+                start();
+    
+            }, 1000);
+        }
         
-            if (seconds < 10) {
-                seconds = "0" + seconds;
-            } else {seconds};
-
-            clock.textContent = `${minuts} : ${seconds}`;
-
-            // To reset the time
-
-            function stop() {
-                clearTimeout(clock2);
-                clock.textContent = `00:00`
-                number0 = 0;
-            }
-
-            resetButton.addEventListener("click", stop, false);
-            playAgain.addEventListener("click", top, false);
-
-    }
-
+        startButton.addEventListener("click", startGame, false); 
 
 
 // ---------------------- Cards shuffler -----------------------------
 
-    function start() {
-       
+    function start() {       
 
-// Shuffle function from http://stackoverflow.com/a/2450976
+    // Shuffle function from http://stackoverflow.com/a/2450976
 
         function shuffle(array) {
             var currentIndex = array.length, temporaryValue, randomIndex;
@@ -122,12 +104,18 @@
 
         var newDeck = createDeck(newList);
 
+        // Insert new cards to deck in DOM
+
         deck.appendChild(newDeck);
         createDeck(newList);
 
         var symbolContainer = document.querySelectorAll(".card");
    
 // ---------------------- Panel ---------------------------------
+// Time counter is outside start function
+
+
+        //Add and remove stars
 
         var movesNumber = document.querySelector(".moves");
         var userList = document.querySelectorAll(".match");
@@ -149,28 +137,37 @@
                 star3.classList.add("fa-star");
 
             } else if (difference >= 17 && difference < 25) {
+
                 star1.classList.add("fa-star");
                 star2.classList.add("fa-star");
                 star3.classList.remove("fa-star");
 
             } else if (difference >= 25 && difference < 33) {
+
                 star1.classList.add("fa-star");
                 star2.classList.remove("fa-star");
 
             } else if (difference === 33) {
+
                 star1.classList.remove("fa-star");
+
             } else {console.log(undefined)}
         }
 
+        
+        // Counts the number of moves based on lenght
+        // of the all shown symbols (cards);
 
         function countMoves(list, start) {
 
-            var movesText = document.querySelector(".moves-text");
+        //    var movesText = document.querySelector(".moves-text");
+
+
+            // Odd numbers are rounded down
+
             var count = Math.floor(list.length / 2);
 
             movesNumber.innerHTML = count;  
-
-            movesText.textContent = (count === 1) ? "Move" : "Moves";
 
         }
 
@@ -179,41 +176,43 @@
 
 // Animations for you won
 
-        function youWon(roundUserTime) {
-
-            for (var i = 0;  i < symbolContainer.length; i++) {
-                symbolContainer[i].classList.remove("match");
-                symbolContainer[i].classList.add("win");
-                console.log(symbolContainer[i]);
-            }
+        function youWon(keepNumber) {
 
             // Setting up Win screen
 
             setTimeout(function winMessage() {
+
                 deck.classList.add("hide");
                 var winMessage = document.querySelector(".win-message");
                 winMessage.classList.remove("hide");
+
+                // Show number of moves
+
                 var movesNumber = document.querySelector(".moves").textContent;
                 var movesMessage = document.querySelector(".moves-message");
                 movesMessage.textContent = movesNumber;
+
+                // Show game time
                 var gameTime = document.querySelector(".game-time");
-                gameTime.textContent = roundUserTime;
+                gameTime.textContent = keepNumber;
+
+                // Show stars number
+                
                 var stars = document.querySelectorAll(".stars .fa-star");
                 var starMessage = document.querySelector(".star-number");
                 starMessage.textContent =  stars.length;
-                var starPlural = document.querySelector(".star-plural");
-                starPlural.textContent = (start.length == 1) ? "Star" : "Stars";
+
                 var scorePanel = document.querySelector(".score-panel");
                 scorePanel.classList.add("hide");
-                var timeScore = document.querySelector(".time-score");
-                timeScore.disable = true;
+           //     var timeScore = document.querySelector(".time-score");
+            //    timeScore.disable = true;
 
-            }, 2000);
+            }, 1980); // Waiting till win card animation finish
             
        };
 
 
-// Check win list
+// Win list is based on match lenght array
 
         function checkWinList(timeZero) {
             
@@ -221,13 +220,21 @@
 
                 if (userList.length === 16) {
 
-                    var endTime = performance.now(); 
-                    var userTime = endTime - timeZero;
-                    userTime = userTime / 1000;
-                    var roundUserTime = userTime.toFixed(2);
+                    // Storing time number
+
+                    var keepNumber = clock.innerHTML;
+                    clock.classList.add("hide");
+                    clockPanel.classList.add("hide");        
+
+                    // adding win animation
+
+                    for (var i = 0;  i < symbolContainer.length; i++) {
+                        symbolContainer[i].classList.remove("match");
+                        symbolContainer[i].classList.add("win");
+                        console.log(symbolContainer[i]);
+                    }        
                     
-                    youWon(roundUserTime);
-                    startTime = endTime;
+                    youWon(keepNumber);
 
                 } else {console.log(undefined)}
         };
@@ -276,9 +283,11 @@
                             card1.classList.remove("show");        
                             card2.classList.remove("wrong");
                             card1.classList.remove("wrong");
-                    },900)
-                        
+
+                    },900)  // length of animation wrong is 500s
+                            // plus added 400 for remembering                    
                 }
+
 
                 // No new cards will be shown during "remembering"
 
@@ -290,7 +299,7 @@
                             symbolContainer[i].classList.remove("disable-click");
                         
                         }   
-                }, 900)
+                }, 900) // time needed to end animation and hide "show"
 
             } else  {console.log(undefined)};
         };
@@ -308,43 +317,39 @@
             var card2 = openCards[1];
 
             var symbol = thisCard.querySelector(".show .fa").classList.item(1);
-            openCardList.push(symbol);
-            countList.push(symbol);
+            
+            // Array of open cards, need to check if cards match
 
-            countMoves(countList);
+            openCardList.push(symbol);
             checkOpenList(openCardList, card1, card2);
+
+            // Lenght of countList is a number of clicks
+            // which after dividing by 2 and rounding down
+            // will give number of moves
+
+            countList.push(symbol);
+            countMoves(countList);
+
 
         };
 
 
-// Add eventListener to the cards, giving them "open" class
-// Setting start time of the game   
+// Add eventListener to the cards, 
+// giving them "open" and "show" class
+// Start checking if cards match 
+// and if all cards are collected
 
-var timeTable = [];
 
         function afterClicking() {
 
             var thisCard = this;
 
-                    this.classList.add("open", "show");
+            this.classList.add("open", "show");
                     
-                    var startTime = performance.now(); 
-                    timeTable.push(startTime);
-                    var timeZero = timeTable[0];
-
-
-                    progressMeasure(startTime);
-                    checkCards(thisCard);
-                    checkWinList(timeZero);
-
-
-
-                   
-
-        }
-
-
-
+            progressMeasure();
+            checkCards(thisCard);
+            checkWinList();                   
+        };
 
 
         function clickCard(){
@@ -352,40 +357,72 @@ var timeTable = [];
             for (var i = 0; i < 500; i++) { 
                 var oneCard = symbolContainer[i];
                 
-                oneCard.addEventListener("click", afterClicking
-                
-          //      function(){
+                oneCard.addEventListener("click", afterClicking, false);
 
-           //         var thisCard = this;
-           //         this.classList.add("open", "show");
-                    
-
-            //        var startTime = performance.now();  
-            //        timeTable.push(startTime);
-            //        var timeZero = timeTable[0];
-
-            //        timer();
-            //        progressMeasure(startTime);
-            //        checkCards(thisCard);
-            //        checkWinList(timeZero);
-
-           //     }
-                
-                , false);
             }
-
         };
-        clickCard();
-    };
 
+        clickCard();
+
+    }; // end of start() function
+
+
+// ---------------------- Counter ------------------------------  
+// Must be outside of start()  
+
+var number0 = 0;
+
+function counter() {
+
+        // After first in deck EventListener is removed
+
+        deck.removeEventListener("click", counter, false);
+
+        // Producing seconds
+        
+        setTimeout(function(){
+
+            number0 = number0 + 1;
+
+        }, 1000)
+
+        var clock2 = setTimeout("counter()", 1000);
+
+        // Changing seconds into minutes
+
+        var minuts = Math.floor(number0 / 60);
+        var seconds = number0 - (minuts * 60);
+
+        // Set up display for single number
+
+        if (minuts < 10) {
+            minuts = "0" + minuts;
+        } else {minuts};
+    
+        if (seconds < 10) {
+            seconds = "0" + seconds;
+        } else {seconds};
+
+        clock.textContent = `${minuts}:${seconds}`;
+
+        // Reseting time
+
+        function stop() {
+            clearTimeout(clock2);
+            clock.textContent = `00:00`
+            number0 = 0;
+        }
+
+        resetButton.addEventListener("click", stop, false);
+        playAgain.addEventListener("click", stop, false);
+
+}
+
+    deck.addEventListener("click", counter, false);
 
 
 // --------------------- Play Again ----------------------------
 
-    var startClock = performance.now();
-
-
-    var playAgain = document.querySelector(".play-again");
 
     function playAgainFunction() {
 
@@ -407,6 +444,12 @@ var timeTable = [];
         var movesNumber = document.querySelector(".moves");
             movesNumber.innerHTML = 0;
 
+        // Bringing back clock
+        
+        clock.classList.remove("hide");
+        clockPanel.classList.remove("hide");        
+
+        deck.addEventListener("click", counter, false);
 
         // Waiting till restart animation will end
     
@@ -414,10 +457,9 @@ var timeTable = [];
 
             winMessage.classList.add("hide");
 
-            deck.innerHTML = "";
-            counter();
-            start();  
+            deck.innerHTML = ""; // cleaning old deck
 
+            start();  // producting new deck of cards
 
         }, 1000)
     };
@@ -452,6 +494,13 @@ var timeTable = [];
         var movesNumber = document.querySelector(".moves");
             movesNumber.innerHTML = 0;
 
+        // Bring back clock
+        
+        clock.classList.remove("hide");
+        clockPanel.classList.remove("hide");        
+
+        deck.addEventListener("click", counter, false);
+
         // Adding restart animation for cards
 
         var symbolContainer = document.querySelectorAll(".card");
@@ -471,47 +520,18 @@ var timeTable = [];
         setTimeout(function wait() {
 
             deck.innerHTML = "";
-            counter();
-
+        
             start();  
     
-
         }, 1000)
     };
 
     resetButton.addEventListener("click", restartFunction, false);
     
 
-    // ------------------- Start ----------------------------
+   
 
 
-    function startGame() {
-
-
-        var startDeck = document.querySelector(".start-deck");
-        startDeck.classList.add("reset-card");
-        counter();
-
-
-
-        setTimeout(function moveDeck() {
-            startDeck.classList.add("hide");
-            deck.classList.remove("hide");
-            deck.classList.remove("win");
-            deck.innerHTML = "";                
-            var scorePanel = document.querySelector(".score-panel");
-            scorePanel.classList.remove("hide");
-           
-
-        
-            start();
-
-        }, 1000);
-    }
-    
-    startButton.addEventListener("click", startGame, false);    
-
-//});
 
 
  

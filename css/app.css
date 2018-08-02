@@ -1316,6 +1316,43 @@ header {
     line-height: 180%;
     font-size: 1.2em;
 }
+.spot {
+  width: 30vw;
+  height: 15vh;
+  color: gray;
+  opacity: 0.3;
+  font-size: 30vh;
+  position: fixed;
+  top: 5vh;
+  right: 0;
+  z-index: 1080;
+}
+
+.spot2 {
+  width: 30vw;
+  height: 28vh;
+  background: rgb(151, 151, 151, 0.3);
+  -webkit-clip-path: polygon(38% 16%, 46% 24%, 53% 15%, 58% 6%, 64% 4%, 70% 7%, 72% 14%, 72% 23%, 70% 33%, 72% 38%, 81% 37%, 89% 32%, 96% 31%, 98% 41%, 90% 47%, 83% 51%, 77% 56%, 79% 64%, 87% 69%, 91% 76%, 92% 85%, 85% 89%, 78% 85%, 73% 76%, 65% 66%, 58% 71%, 57% 82%, 58% 91%, 49% 92%, 44% 83%, 41% 69%, 39% 59%, 30% 60%, 27% 69%, 23% 78%, 16% 81%, 9% 78%, 6% 68%, 11% 54%, 20% 45%, 26% 39%, 21% 33%, 12% 32%, 9% 22%, 8% 13%, 17% 6%, 28% 4%, 36% 5%);
+  clip-path: polygon(38% 16%, 46% 24%, 53% 15%, 58% 6%, 64% 4%, 70% 7%, 72% 14%, 72% 23%, 70% 33%, 72% 38%, 81% 37%, 89% 32%, 96% 31%, 98% 41%, 90% 47%, 83% 51%, 77% 56%, 79% 64%, 87% 69%, 91% 76%, 92% 85%, 85% 89%, 78% 85%, 73% 76%, 65% 66%, 58% 71%, 57% 82%, 58% 91%, 49% 92%, 44% 83%, 41% 69%, 39% 59%, 30% 60%, 27% 69%, 23% 78%, 16% 81%, 9% 78%, 6% 68%, 11% 54%, 20% 45%, 26% 39%, 21% 33%, 12% 32%, 9% 22%, 8% 13%, 17% 6%, 28% 4%, 36% 5%);
+  font-size: 25vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1090;
+}
+.spot3 {
+  width: 10vw;
+  height: 10vh;
+  color: gray;
+  opacity: 0.5;
+  font-size: 10vh;
+  position: fixed;
+  bottom: 1vh;
+  right: 25vw;
+  z-index: 1090;
+}
+
+
 
 .start-graduate {
     widows: 100%;
@@ -1348,6 +1385,10 @@ header {
     font-size: 2em;
     cursor: pointer;
 }
+.start-button:hover {
+  background: #3841E8;
+  background: url(../img/green.png);
+}
 
 
 /* ----------------- Panel ------------------------- */
@@ -1363,12 +1404,17 @@ header {
  
 .stars,
 .restart {
-    font-size: 1.6em;
+    font-size: 1.4em;
 }
 
 .moves {
     font-size: 2.2em;
     line-height: 0.8em;
+}
+
+.time-score {
+   font-size: 2.2em;
+   line-height: 1em;
 }
 
 .score-panel .stars {
@@ -1387,8 +1433,7 @@ header {
     justify-content: flex-end;
     text-align: right;
     cursor: pointer;
-    width: 8vw;
-    min-width: 48px;
+    width: 5vw;
 }
 
 
@@ -1551,6 +1596,33 @@ header {
     font-size: 1em;
     padding: 4vh 0 0 0;
 }
+.win-star01 {
+  position: fixed;
+  top: 12vh;
+  left: 0;
+  font-size: 30vh;
+  color:gray;
+  opacity: 0.3;
+  z-index: 1100;
+}
+.win-star02 {
+  position: fixed;
+  top: 50vh;
+  right: -75vw;
+  font-size: 10vh;
+  color:gray;
+  opacity: 0.3;
+  z-index: 1120;
+}
+.win-star03 {
+  position: fixed;
+  bottom: 10vh;
+  left: 0;
+  font-size: 10vh;
+  color:gray;
+  opacity: 0.3;
+  z-index: 1130;
+}
 
 .win-title {
     width: 100%;
@@ -1579,9 +1651,15 @@ header {
 
 .moves-message,
 .game-time,
-.star-number {
+.star-number,
+.time-score {
     font-size: 150%;
     font-weight: 700;
+}
+.time-score {
+  font-size: 200%;
+  font-weight: 500;
+
 }
 
 .button-container {
@@ -1627,6 +1705,41 @@ header {
         text-align: left;
         order: 10;
     }
+    .spot {
+      width: 15vw;
+      height: 15vh;
+      color: gray;
+      opacity: 0.5;
+      font-size: 35vh;
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 1080;
+    }
+    
+    .spot2 {
+      width: 20vw;
+      height: 20vh;
+      background: rgb(151, 151, 151, 0.3);
+      -webkit-clip-path: polygon(38% 16%, 46% 24%, 53% 15%, 58% 6%, 64% 4%, 70% 7%, 72% 14%, 72% 23%, 70% 33%, 72% 38%, 81% 37%, 89% 32%, 96% 31%, 98% 41%, 90% 47%, 83% 51%, 77% 56%, 79% 64%, 87% 69%, 91% 76%, 92% 85%, 85% 89%, 78% 85%, 73% 76%, 65% 66%, 58% 71%, 57% 82%, 58% 91%, 49% 92%, 44% 83%, 41% 69%, 39% 59%, 30% 60%, 27% 69%, 23% 78%, 16% 81%, 9% 78%, 6% 68%, 11% 54%, 20% 45%, 26% 39%, 21% 33%, 12% 32%, 9% 22%, 8% 13%, 17% 6%, 28% 4%, 36% 5%);
+      clip-path: polygon(38% 16%, 46% 24%, 53% 15%, 58% 6%, 64% 4%, 70% 7%, 72% 14%, 72% 23%, 70% 33%, 72% 38%, 81% 37%, 89% 32%, 96% 31%, 98% 41%, 90% 47%, 83% 51%, 77% 56%, 79% 64%, 87% 69%, 91% 76%, 92% 85%, 85% 89%, 78% 85%, 73% 76%, 65% 66%, 58% 71%, 57% 82%, 58% 91%, 49% 92%, 44% 83%, 41% 69%, 39% 59%, 30% 60%, 27% 69%, 23% 78%, 16% 81%, 9% 78%, 6% 68%, 11% 54%, 20% 45%, 26% 39%, 21% 33%, 12% 32%, 9% 22%, 8% 13%, 17% 6%, 28% 4%, 36% 5%);
+      font-size: 25vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1090;
+    }
+    .spot3 {
+      width: 10vw;
+      height: 10vh;
+      color: gray;
+      opacity: 0.3;
+      font-size: 15vh;
+      position: fixed;
+      bottom: 2vh;
+      right: 8vw;
+      z-index: 1090;
+    }
 
     .start-motto {
         width: 95%;
@@ -1660,9 +1773,16 @@ header {
     .move-panel {
         position: fixed;
         top: 4vh;
-        left: 75vw;
+        left: 20vw;
         z-index: 1060;
     }
+
+    .clock-panel {
+      position: fixed;
+      top: 4vh;
+      right: 11vw;
+      z-index: 1070;
+    } 
 
 /* Deck */
 
@@ -1690,6 +1810,34 @@ header {
     .win-message {
         justify-content: center;
         height: 70vh;
+    }
+
+    .win-star01 {
+      position: fixed;
+      top: 18vh;
+      left: 2vw;
+      font-size: 35vh;
+      color:gray;
+      opacity: 0.2;
+      z-index: 1100;
+    }
+    .win-star02 {
+      position: fixed;
+      top: 35vh;
+      right: -88vw;
+      font-size: 15vh;
+      color:gray;
+      opacity: 0.2;
+      z-index: 1120;
+    }
+    .win-star03 {
+      position: fixed;
+      bottom: 12vh;
+      left: 43vw;
+      font-size: 25vh;
+      color:gray;
+      opacity: 0.2;
+      z-index: 1130;
     }
 
     .win-title {
@@ -1960,7 +2108,8 @@ header {
     }
 
     .score-panel,
-    .move-panel {
+    .move-panel,
+    .clock-panel {
         position: relative;
     }
 
@@ -1973,6 +2122,12 @@ header {
         top: 0;
         left: 0;
     }
+    .clock-panel {
+      color: black;
+      top: 0;
+      left: 0;
+    }
+
   
 /* Start animation */
   
