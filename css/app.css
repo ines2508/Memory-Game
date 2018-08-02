@@ -1319,7 +1319,7 @@ header {
 .spot {
   width: 30vw;
   height: 15vh;
-  color: gray;
+  color: #808080;
   opacity: 0.3;
   font-size: 30vh;
   position: fixed;
@@ -1329,9 +1329,9 @@ header {
 }
 
 .spot2 {
-  width: 30vw;
-  height: 28vh;
-  background: rgb(151, 151, 151, 0.3);
+  width: 25vw;
+  height: 25vh;
+  background: rgba(151, 151, 151, 0.302);
   -webkit-clip-path: polygon(38% 16%, 46% 24%, 53% 15%, 58% 6%, 64% 4%, 70% 7%, 72% 14%, 72% 23%, 70% 33%, 72% 38%, 81% 37%, 89% 32%, 96% 31%, 98% 41%, 90% 47%, 83% 51%, 77% 56%, 79% 64%, 87% 69%, 91% 76%, 92% 85%, 85% 89%, 78% 85%, 73% 76%, 65% 66%, 58% 71%, 57% 82%, 58% 91%, 49% 92%, 44% 83%, 41% 69%, 39% 59%, 30% 60%, 27% 69%, 23% 78%, 16% 81%, 9% 78%, 6% 68%, 11% 54%, 20% 45%, 26% 39%, 21% 33%, 12% 32%, 9% 22%, 8% 13%, 17% 6%, 28% 4%, 36% 5%);
   clip-path: polygon(38% 16%, 46% 24%, 53% 15%, 58% 6%, 64% 4%, 70% 7%, 72% 14%, 72% 23%, 70% 33%, 72% 38%, 81% 37%, 89% 32%, 96% 31%, 98% 41%, 90% 47%, 83% 51%, 77% 56%, 79% 64%, 87% 69%, 91% 76%, 92% 85%, 85% 89%, 78% 85%, 73% 76%, 65% 66%, 58% 71%, 57% 82%, 58% 91%, 49% 92%, 44% 83%, 41% 69%, 39% 59%, 30% 60%, 27% 69%, 23% 78%, 16% 81%, 9% 78%, 6% 68%, 11% 54%, 20% 45%, 26% 39%, 21% 33%, 12% 32%, 9% 22%, 8% 13%, 17% 6%, 28% 4%, 36% 5%);
   font-size: 25vh;
@@ -1386,8 +1386,8 @@ header {
     cursor: pointer;
 }
 .start-button:hover {
-  background: #3841E8;
-  background: url(../img/green.png);
+  background: #dcdce0;
+  background: url(../img/grey04.png);
 }
 
 
@@ -1598,6 +1598,8 @@ header {
 }
 .win-star01 {
   position: fixed;
+  width: 30vw;
+  height: 30vh;
   top: 12vh;
   left: 0;
   font-size: 30vh;
@@ -1607,8 +1609,10 @@ header {
 }
 .win-star02 {
   position: fixed;
+  width: 10vw;
+  height: 10vh;
   top: 50vh;
-  right: -75vw;
+  right: 10vw;
   font-size: 10vh;
   color:gray;
   opacity: 0.3;
@@ -1616,8 +1620,10 @@ header {
 }
 .win-star03 {
   position: fixed;
+  width: 10vw;
+  height: 10vh;
   bottom: 10vh;
-  left: 0;
+  left: 4vw;
   font-size: 10vh;
   color:gray;
   opacity: 0.3;
@@ -1683,6 +1689,10 @@ header {
     font-size: 1.8em;
     cursor: pointer;
 }
+.play-again:hover {
+  background: #dcdce0;
+  background: url(../img/grey04.png);
+}
 
 .hide {
     display: none;
@@ -1694,10 +1704,10 @@ header {
 /* Welcome screen */
 
     .start-deck {
-        height: 63vh;
+        height: 85vh;
         width: 100%;
         justify-content: center;
-        align-items: flex-end;
+        align-items: center;
     }
 
     .motto-box {
@@ -1718,8 +1728,8 @@ header {
     }
     
     .spot2 {
-      width: 20vw;
-      height: 20vh;
+      width: 25vw;
+      height: 25vh;
       background: rgb(151, 151, 151, 0.3);
       -webkit-clip-path: polygon(38% 16%, 46% 24%, 53% 15%, 58% 6%, 64% 4%, 70% 7%, 72% 14%, 72% 23%, 70% 33%, 72% 38%, 81% 37%, 89% 32%, 96% 31%, 98% 41%, 90% 47%, 83% 51%, 77% 56%, 79% 64%, 87% 69%, 91% 76%, 92% 85%, 85% 89%, 78% 85%, 73% 76%, 65% 66%, 58% 71%, 57% 82%, 58% 91%, 49% 92%, 44% 83%, 41% 69%, 39% 59%, 30% 60%, 27% 69%, 23% 78%, 16% 81%, 9% 78%, 6% 68%, 11% 54%, 20% 45%, 26% 39%, 21% 33%, 12% 32%, 9% 22%, 8% 13%, 17% 6%, 28% 4%, 36% 5%);
       clip-path: polygon(38% 16%, 46% 24%, 53% 15%, 58% 6%, 64% 4%, 70% 7%, 72% 14%, 72% 23%, 70% 33%, 72% 38%, 81% 37%, 89% 32%, 96% 31%, 98% 41%, 90% 47%, 83% 51%, 77% 56%, 79% 64%, 87% 69%, 91% 76%, 92% 85%, 85% 89%, 78% 85%, 73% 76%, 65% 66%, 58% 71%, 57% 82%, 58% 91%, 49% 92%, 44% 83%, 41% 69%, 39% 59%, 30% 60%, 27% 69%, 23% 78%, 16% 81%, 9% 78%, 6% 68%, 11% 54%, 20% 45%, 26% 39%, 21% 33%, 12% 32%, 9% 22%, 8% 13%, 17% 6%, 28% 4%, 36% 5%);
@@ -1731,13 +1741,13 @@ header {
     }
     .spot3 {
       width: 10vw;
-      height: 10vh;
+      height: 15vh;
       color: gray;
       opacity: 0.3;
       font-size: 15vh;
       position: fixed;
-      bottom: 2vh;
-      right: 8vw;
+      bottom: 13vh;
+      right: 9vw;
       z-index: 1090;
     }
 
@@ -1768,6 +1778,7 @@ header {
         left: 0;
         z-index: 1050;
         color: white;
+        padding: 0 4vw 0 4vw;
     }
 
     .move-panel {
@@ -1814,6 +1825,8 @@ header {
 
     .win-star01 {
       position: fixed;
+      width: 35vw;
+      height: 35vh;
       top: 18vh;
       left: 2vw;
       font-size: 35vh;
@@ -1823,8 +1836,10 @@ header {
     }
     .win-star02 {
       position: fixed;
+      width: 15vw;
+      height: 15vh;
       top: 35vh;
-      right: -88vw;
+      right: 0;
       font-size: 15vh;
       color:gray;
       opacity: 0.2;
@@ -1832,6 +1847,8 @@ header {
     }
     .win-star03 {
       position: fixed;
+      width: 20vw;
+      height: 25vh;
       bottom: 12vh;
       left: 43vw;
       font-size: 25vh;

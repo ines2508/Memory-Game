@@ -418,12 +418,12 @@ function counter() {
         playAgain.addEventListener("click", stop, false);
 
         if (clockPanel.classList.contains("hide")) {
-            stop();
-            lastCard.removeEventListener("click", stop, false);
-
+            stop()
         } else {console.log(undefined)};
 
-        lastCard.addEventListener("click", stop, false);
+    //    playAgain.removeEventListener("click", stop, false);
+
+
 
 
 }
