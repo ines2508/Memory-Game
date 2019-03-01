@@ -60,9 +60,6 @@ There are 3 ways to clear this setTimeout:
 - clicking play again button
 - and after the score panel is hide when all cards are matched.
 
-### Button Reset
-[Reset Button](###ResetButton)
-
 ### Deck of cards
 
 ####Function clickCard and afterClicking
