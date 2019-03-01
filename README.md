@@ -11,7 +11,7 @@ Game consists of 4 screens:
   - match cards
   - win animation
   - reset animation
-4. Winner message with button play and rest animation
+4. Winner message with button play and reset animation
 
 ## Screen 1
 

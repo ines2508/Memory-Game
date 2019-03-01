@@ -1468,6 +1468,7 @@ header {
     background: #3841E8;
     background: url(../img/blue.png); 
     cursor: default;
+    pointer-events: none;
 }
 
 .deck .card.show {
